@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+
+
+        <ImageView
+            android:id="@+id/avatar_image_view"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="1dp"
+            android:src="@drawable/ic_launcher_background"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/sender_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toEndOf="@+id/avatar_image_view"
+            android:layout_toRightOf="@+id/avatar_image_view"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:text="Name"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/message_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sender_text_view"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="9dp"
+            android:layout_toEndOf="@+id/avatar_image_view"
+            android:layout_toRightOf="@+id/avatar_image_view"
+            android:background="@drawable/other_dialog_frame"
+            android:padding="8dp"
+            android:paddingLeft="4dp"
+            android:text="Message"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/choice_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_style"
+            android:foreground="@drawable/btn_style"
+            android:onClick="click_manadger"
+            android:outlineProvider="bounds"
+            android:backgroundTint="#272733"
+            android:text="ChoiseButton"
+            android:textColor="#FFFFFF" />
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+   <string-array name="C1_NewHistory_TheStart_NamesOrServiceNames" tools:ignore="TypographyEllipsis">
+ 
+        <item>nothing</item>
+        <item>#!(clear_screen);</item>
+        <item>ImagerService</item>
+        <item>nothing</item>
+        <item>nothing</item>
+        <item>nothing</item>
+        <item>nothing</item>
+        <item>nothing</item>
+        <item>nothing</item>
+        <item>nothing</item>
+        <item>nothing</item>
+        <item>#!(btn_executor)</item>
+        <item>#!(play_videoobject)</item>
+        <item>#!(btn_executor)</item>
+        <item>#!(play_videoobject)</item>
+        <item>#!(btn_executor)</item>
+        <item>#!(play_videoobject)</item>
+        <item>#!(btn_executor)</item>
+        <item>#!(play_videoobject)</item>
+        <item>Чарли</item>
+		<item>#!(playsound)</item>
+        <item>ImagerService</item>
+        <item>Чарли</item>
+        <item>Чарли</item>
+        <item>#!(write.album_executor)</item>
+        <item>Чарли</item>
+        <item>Чарли</item>
+        <item>ImagerService</item>
+        <item>Чарли</item>
+        <item>Юджин</item>
+        <item>nothing</item>
+        <item>nothing</item>
+        <item>ImagerService</item>
+        <item>#!(makeknown_executor)</item>
+        <item>#!(btn_executor)</item>
+        <item>Юджин</item>
+        <item>Босс</item>
+        <item>ImagerService</item>
+        <item>Босс</item>
+        <item>Юджин</item>
+        <item>Юджин</item>
+        <item>Юджин</item>
+        <item>Юджин</item>
+
+   </string-array>
+</resources>

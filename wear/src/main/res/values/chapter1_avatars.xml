@@ -1,0 +1,19 @@
+<resources>
+
+    <string-array name="C1_ImagesOrAvatars">
+        <item>cutters</item>
+        <item>none</item>
+        <item>None</item>
+        <item>nothing</item>
+        <item>nonimage</item>
+        <item>nonimage</item>
+        <item>nonimage</item>
+        <item>nonimage</item>
+        <item>nothing</item>
+        <item>nothing</item>
+        <item>None</item>
+
+
+    </string-array>
+
+</resources>

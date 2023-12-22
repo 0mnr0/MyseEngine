@@ -1,0 +1,8 @@
+<resources>
+
+    <string-array name="C1_NamesOrServiceNames">
+        <item>#!(goto_xml)</item>
+
+    </string-array>
+
+</resources>

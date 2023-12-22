@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+   <string-array name="C1_NewHistory_SecondChoice_TypedID" tools:ignore="TypographyEllipsis">
+ 
+        <item>0</item>
+
+        <item>112</item>
+
+   </string-array>
+</resources>

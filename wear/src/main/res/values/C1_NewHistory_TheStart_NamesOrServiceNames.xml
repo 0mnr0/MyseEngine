@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+   <string-array name="C1_NewHistory_TheStart_NamesOrServiceNames" tools:ignore="TypographyEllipsis">
+ 
+        <item>nothing</item>
+        <item>#!(clear_screen);</item>
+        <item>ImagerService</item>
+        <item>nothing</item>
+        <item>nothing</item>
+        <item>nothing</item>
+        <item>nothing</item>
+        <item>nothing</item>
+        <item>nothing</item>
+        <item>nothing</item>
+        <item>nothing</item>
+        <item>#!(btn_executor)</item>
+        <item>#!(play_videoobject)</item>
+        <item>#!(btn_executor)</item>
+        <item>#!(play_videoobject)</item>
+        <item>#!(btn_executor)</item>
+        <item>#!(play_videoobject)</item>
+        <item>#!(btn_executor)</item>
+        <item>#!(play_videoobject)</item>
+        <item>Чарли</item>
+		<item>#!(playsound)</item>
+        <item>ImagerService</item>
+        <item>Чарли</item>
+        <item>Чарли</item>
+        <item>#!(write.album_executor)</item>
+        <item>Чарли</item>
+        <item>Чарли</item>
+        <item>ImagerService</item>
+        <item>Чарли</item>
+        <item>Юджин</item>
+        <item>nothing</item>
+        <item>nothing</item>
+        <item>ImagerService</item>
+        <item>#!(makeknown_executor)</item>
+        <item>#!(btn_executor)</item>
+        <item>Юджин</item>
+        <item>Босс</item>
+        <item>ImagerService</item>
+        <item>Босс</item>
+        <item>Юджин</item>
+        <item>Юджин</item>
+        <item>Юджин</item>
+        <item>Юджин</item>
+
+
+        <item>Босс</item>
+
+        <item>#!(btn_executor)</item>
+
+        <item>Юджин</item>
+
+        <item>Юджин</item>
+
+        <item>Чарли</item>
+
+        <item>Чарли</item>
+
+        <item>Чарли</item>
+
+        <item>Юджин</item>
+
+        <item>Юджин</item>
+
+        <item>Юджин</item>
+
+        <item>Чарли</item>
+
+        <item>#!(stopsound)</item>
+
+        <item>nothing</item>
+
+        <item>Чарли</item>
+
+        <item>#!(play_videoobject)</item>
+
+        <item>Юджин</item>
+
+        <item>Юджин</item>
+
+        <item>Чарли</item>
+
+        <item>Босс</item>
+
+        <item>Чарли</item>
+
+        <item>Босс</item>
+
+        <item>Босс</item>
+
+        <item>Босс</item>
+
+        <item>Чарли</item>
+
+        <item>Юджин</item>
+
+        <item>Юджин</item>
+
+        <item>Юджин</item>
+
+        <item>#!(btn_executor)</item>
+
+        <item>#!(clear_screen);</item>
+
+        <item>#!(playsound)</item>
+
+        <item>Юджин</item>
+
+        <item>Юджин</item>
+
+        <item>Юджин</item>
+
+        <item>Босс</item>
+
+        <item>Юджин</item>
+
+        <item>Чарли</item>
+
+        <item>ImagerService</item>
+
+        <item>Чарли</item>
+
+        <item>Юджин</item>
+
+        <item>Юджин</item>
+
+        <item>Босс</item>
+
+        <item>#!(playsound)</item>
+
+        <item>#!(btn_executor)</item>
+
+        <item>Юджин</item>
+
+        <item>Босс</item>
+
+        <item>Босс</item>
+
+        <item>Чарли</item>
+
+        <item>Юджин</item>
+
+        <item>Босс</item>
+
+        <item>nothing</item>
+
+        <item>nothing</item>
+
+        <item>nothing</item>
+
+        <item>nothing</item>
+
+        <item>Босс</item>
+
+        <item>Босс</item>
+
+        <item>Чарли</item>
+
+        <item>Босс</item>
+
+
+        <item>Чарли</item>
+
+        <item>Босс</item>
+
+        <item>Босс</item>
+
+        <item>Чарли</item>
+
+        <item>Юджин</item>
+
+        <item>Юджин</item>
+
+        <item>Босс</item>
+
+        <item>Босс</item>
+
+        <item>Чарли</item>
+		
+        <item>#!(btn_executor)</item>
+
+        <item>Босс</item>
+
+        <item>Босс</item>
+
+        <item>Чарли</item>
+
+        <item>Босс</item>
+
+        <item>Чарли</item>
+
+        <item>Босс</item>
+
+        <item>Босс</item>
+
+        <item>Чарли</item>
+
+        <item>Босс</item>
+
+        <item>nothing</item>
+
+        <item>nothing</item>
+
+        <item>Босс</item>
+
+        <item>nothing</item>
+
+        <item>nothing</item>
+
+        <item>Юджин</item>
+
+        <item>Босс</item>
+
+        <item>Босс</item>
+
+        <item>nothing</item>
+
+        <item>nothing</item>
+
+        <item>nothing</item>
+
+        <item>nothing</item>
+
+        <item>nothing</item>
+
+        <item>nothing</item>
+
+        <item>Чарли</item>
+
+        <item>#!(btn_executor)</item>
+
+        <item>Чарли</item>
+
+        <item>Юджин</item>
+
+        <item>Чарли</item>
+
+        <item>Чарли</item>
+
+        <item>Чарли</item>
+
+        <item>Юджин</item>
+
+        <item>Чарли</item>
+
+        <item>Чарли</item>
+
+        <item>Юджин</item>
+
+        <item>Босс</item>
+
+        <item>nothing</item>
+		
+        <item>#!(btn_executor)</item>
+
+        <item>Юджин</item>
+		
+		<item>#!(achievement_executor)</item>
+
+   </string-array>
+</resources>

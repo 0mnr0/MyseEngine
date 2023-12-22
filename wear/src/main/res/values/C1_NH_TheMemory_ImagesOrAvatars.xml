@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+   <string-array name="C1_NH_TheMemory_ImagesOrAvatars" tools:ignore="TypographyEllipsis">
+ 
+        <item>charlie</item>
+
+        <item>charlie_pass</item>
+
+        <item>eugene_surprised</item>
+
+        <item>charlie_pass</item>
+
+        <item>charlie_pass</item>
+
+        <item>charlie_pass</item>
+
+        <item>charlie_scream</item>
+
+        <item>None</item>
+
+        <item>None</item>
+
+        <item>eugene_surprised</item>
+
+        <item>boss</item>
+
+        <item>None</item>
+
+        <item>None</item>
+
+        <item>boss</item>
+
+        <item>boss</item>
+
+        <item>charlie_scared</item>
+
+        <item>None</item>
+
+        <item>boss</item>
+
+        <item>boss</item>
+
+        <item>None</item>
+
+        <item>None</item>
+
+   </string-array>
+</resources>

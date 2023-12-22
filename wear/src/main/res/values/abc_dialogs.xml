@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string-array name="C1_additions01_DialogsOrTexts" tools:ignore="TypographyEllipsis">
+        <item>None</item>
+        <item>Могут позволить мне вырезать что угодно той формы, которую я хочу\nНо...</item>
+        <item>1</item>
+        <item>Могут позволить мне вырезать что угодно той формы, которую я хочу\nНо...</item>
+        <item>Могут позволить мне вырезать что угодно той формы, которую я хочу\nНо...</item>
+        <item>Могут позволить мне вырезать что угодно той формы, которую я хочу\nНо...</item>
+        <item>Я должны быть аккуратна, поскольку они острые\n...\nЕсли я не буду аккуратна с ними...</item>
+        <item>Могут позволить мне вырезать что угодно той формы, которую я хочу\nНо...</item>
+        <item>v1</item>
+        <item>Могут позволить мне вырезать что угодно той формы, которую я хочу\nНо...</item>
+        <item>Могут позволить мне вырезать что угодно той формы, которую я хочу\nНо...</item>
+
+    </string-array>
+
+    <string-array name="C1_additions01_NamesOrServiceNames" tools:ignore="TypographyEllipsis">
+        <item>None</item>
+        <item>Вы не понимаете это другое.</item>
+        <item>1</item>
+        <item>Вы не понимаете это другое.</item>
+        <item>Вы не понимаете это другое.</item>
+        <item>Вы не понимаете это другое.</item>
+        <item>Вы не понимаете это другое.</item>
+        <item>Вы не понимаете это другое.</item>
+        <item>v1</item>
+        <item>Вы не понимаете это другое.</item>
+        <item>Вы не понимаете это другое.</item>
+    </string-array>
+
+
+    <string-array name="C1_additions01_ImagesOrAvatars" tools:ignore="TypographyEllipsis">
+        <item>none</item>
+        <item>none</item>
+        <item>none</item>
+        <item>none</item>
+        <item>none</item>
+        <item>none</item>
+        <item>none</item>
+        <item>none</item>
+        <item>none</item>
+        <item>none</item>
+        <item>none</item>
+    </string-array>
+
+    <string-array name="C1_additions01_TypedID" tools:ignore="TypographyEllipsis">
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+
+    </string-array>
+
+</resources>

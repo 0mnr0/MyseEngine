@@ -1,0 +1,19 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string-array name="C1_DialogsOrTexts" tools:ignore="TypographyEllipsis">
+        <item>None</item>
+        <item>N</item>
+        <item>1</item>
+        <item>1</item>
+        <item>Выглядят так, словно они могут разрезать что угодно</item>
+        <item>Эти ножницы....</item>
+        <item>Могут позволить мне вырезать что угодно той формы, которую я хочу\nНо...</item>
+        <item>Я должны быть аккуратна, поскольку они острые\n...\nЕсли я не буду аккуратна с ними...</item>
+        <item>v1</item>
+        <item>Append</item>
+        <item>C1</item>
+
+
+    </string-array>
+
+</resources>

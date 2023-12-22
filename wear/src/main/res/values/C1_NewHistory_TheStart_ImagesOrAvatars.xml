@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+   <string-array name="C1_NewHistory_TheStart_ImagesOrAvatars" tools:ignore="TypographyEllipsis">
+ 
+        <item>None</item>
+        <item>nothing</item>
+        <item>scissors</item>
+        <item>None</item>
+        <item>None</item>
+        <item>None</item>
+        <item>None</item>
+        <item>None</item>
+        <item>None</item>
+        <item>None</item>
+        <item>None</item>
+        <item>Погодите...|Что это..?</item>
+        <item>nothing</item>
+        <item>Ах...</item>
+        <item>nothing</item>
+        <item>Нет...|Нет... Этого не может быть, не может</item>
+        <item>nothing</item>
+        <item>Этого не может быть, этого не может быть!</item>
+        <item>nothing</item>
+        <item>charlie_scared</item>
+		<item>None</item>
+        <item>charlie_1</item>
+        <item>charlie</item>
+        <item>charlie</item>
+        <item>nothing</item>
+        <item>charlie_surprising</item>
+        <item>charlie_surprising</item>
+        <item>scissors</item>
+        <item>charlie_pass</item>
+        <item>eugene</item>
+        <item>None</item>
+        <item>None</item>
+        <item>photo2</item>
+        <item>nothing</item>
+        <item>Кто ты? Кто разрешил тебе разговаривать со мной?|Я не знаю тебя, отойди от моего лица</item>
+        <item>eugene_surprised</item>
+        <item>boss</item>
+        <item>photo3</item>
+        <item>boss</item>
+        <item>eugene_surprised2</item>
+        <item>eugene_undefined2</item>
+        <item>eugene_undefined2</item>
+        <item>eugene_undefined</item>
+
+        <item>boss</item>
+
+        <item>Ты! Что ты сделал с моей памятью?|Ты.. Забудь, Я... Я человек?</item>
+
+        <item>eugene_surprised2</item>
+
+        <item>eugene_angry</item>
+
+        <item>charlie_surprising</item>
+
+        <item>charlie_surprising</item>
+
+        <item>charlie_surprising</item>
+
+        <item>eugene</item>
+
+        <item>eugene</item>
+
+        <item>eugene_surprised</item>
+
+        <item>charlie</item>
+
+        <item>None</item>
+
+        <item>None</item>
+
+        <item>charlie_undefined</item>
+
+        <item>nothing</item>
+
+        <item>eugene_surprised2</item>
+
+        <item>eugene_surprised2</item>
+
+        <item>charlie_undefined</item>
+
+        <item>boss</item>
+
+        <item>charlie</item>
+
+        <item>eugene_surprised</item>
+
+        <item>boss</item>
+
+        <item>boss</item>
+
+        <item>charlie</item>
+
+        <item>eugene</item>
+
+        <item>eugene</item>
+
+        <item>eugene_undefined</item>
+
+        <item>... Загробный офис?|... Обычно?</item>
+
+        <item>nothing</item>
+
+        <item>None</item>
+
+        <item>eugene_surprised</item>
+
+        <item>eugene_surprised</item>
+
+        <item>eugene_angry</item>
+
+        <item>boss</item>
+
+        <item>boss</item>
+
+        <item>charlie</item>
+
+        <item>charlie_image</item>
+
+        <item>charlie</item>
+
+        <item>eugene_angry05</item>
+
+        <item>eugene_angry05</item>
+
+        <item>boss</item>
+
+        <item>None</item>
+
+        <item>Я запечатана в трости?|Я не должна быть настолько яркой?</item>
+
+        <item>eugene_surprised2</item>
+
+        <item>boss</item>
+
+        <item>boss</item>
+
+        <item>charlie_pass</item>
+
+        <item>eugene_undefined</item>
+
+        <item>boss</item>
+
+        <item>None</item>
+
+        <item>None</item>
+
+        <item>None</item>
+
+        <item>None</item>
+
+        <item>boss</item>
+
+        <item>boss</item>
+
+        <item>charlie</item>
+
+        <item>boss</item>
+
+        <item>charlie_pass</item>
+
+        <item>boss</item>
+
+        <item>boss</item>
+
+        <item>charlie_scared</item>
+
+        <item>eugene_surprised2</item>
+
+        <item>eugene_surprised2</item>
+
+        <item>boss</item>
+
+        <item>boss</item>
+
+        <item>charlie_scared</item>
+
+        <item>Кто вы такие, чтобы меня запечатать?|Что я сделал, чтобы быть запечатаным?</item>
+
+        <item>boss</item>
+
+        <item>boss</item>
+
+        <item>charlie_pass</item>
+
+        <item>boss</item>
+
+        <item>charlie</item>
+
+        <item>boss</item>
+
+        <item>boss</item>
+
+        <item>charlie_scared</item>
+
+        <item>boss</item>
+
+        <item>None</item>
+
+        <item>None</item>
+
+        <item>boss</item>
+
+        <item>None</item>
+
+        <item>None</item>
+
+        <item>eugene_angry</item>
+
+        <item>boss</item>
+
+        <item>boss</item>
+
+        <item>None</item>
+
+        <item>None</item>
+
+        <item>None</item>
+
+        <item>None</item>
+
+        <item>None</item>
+
+        <item>None</item>
+
+        <item>charlie</item>
+
+        <item>(Потому что я нужен им..?)|(Почему вы, ребята, освободили меня?)</item>
+
+        <item>charlie</item>
+
+        <item>eugene_surprised</item>
+
+        <item>charlie_pass</item>
+
+        <item>charlie_pass</item>
+
+        <item>charlie_pass</item>
+
+        <item>eugene</item>
+
+        <item>charlie_pass2</item>
+
+        <item>charlie_pass2</item>
+
+        <item>eugene_angry</item>
+
+        <item>boss</item>
+
+        <item>None</item>
+
+        <item>[Мне надо узнать, почему моё тело стало светлым]|[Мне надо узнать, что случилось  моей памятью]</item>
+
+        <item>eugene_angry</item>
+		
+		<item>nothing</item>
+
+   </string-array>
+</resources>

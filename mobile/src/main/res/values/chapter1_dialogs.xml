@@ -1,0 +1,7 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string-array name="C1_DialogsOrTexts" tools:ignore="TypographyEllipsis">
+        <item>C1_NewHistory_TheStart</item>
+    </string-array>
+
+</resources>
