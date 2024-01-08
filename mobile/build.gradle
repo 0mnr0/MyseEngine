@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace 'com.svl.myseengine'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.svl.myseengine"
@@ -18,7 +18,9 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    buildFeatures {
+        buildConfig = true
+    }
     buildTypes {
         release {
             minifyEnabled false

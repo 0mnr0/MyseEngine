@@ -15,7 +15,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.util.TypedValue;
@@ -23,6 +22,8 @@ import android.view.ContextThemeWrapper;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -33,8 +34,6 @@ import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.gms.wearable.DataApi;
 import com.google.android.gms.wearable.Wearable;
 
@@ -42,8 +41,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-
 
 
 public class MainActivity extends AppCompatActivity {
@@ -66,15 +63,15 @@ public class MainActivity extends AppCompatActivity {
     String chapterID = "C1";
     boolean AutoPlaying=false;
     boolean FastScroll = false;
-    private SharedPreferences prefs;
     int MonetColor=0;
+    boolean SoundMuted=false;
 
-    int lock=0;
 
     private boolean checkMusicPlaying() {
-        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        return audioManager.isMusicActive();
+        boolean audioManager = ((AudioManager) getSystemService(Context.AUDIO_SERVICE)).isMusicActive() && mediaPlayer.isPlaying() == false;
+        return audioManager;
     }
+
 
     @SuppressLint("NotifyDataSetChanged")
     public void scroller(View view) {
@@ -649,7 +646,10 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         return sharedPreferences.getString("LastSound", "None");
     }
-
+    public boolean LoadMuting(){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        return sharedPreferences.getBoolean("IsSoundMuted", false);
+    }
     public void LoadSounds(){
         String sound = LoadStr();
         if (!sound.equals("None")) {
@@ -657,20 +657,63 @@ public class MainActivity extends AppCompatActivity {
                 Resources res = getResources();
                 int resId = res.getIdentifier(sound, "raw", getPackageName());
                 mediaPlayer.setDataSource(this, Uri.parse("android.resource://" + getPackageName() + "/" + resId));
-                if (checkMusicPlaying()) {
+                if (checkMusicPlaying() && !SoundMuted) {
                     mediaPlayer.setVolume(0.4F, 0.4F);
                 }
                 mediaPlayer.prepare();
             } catch (IOException e) {}
 
             mediaPlayer.setLooping(true);
+            if (LoadMuting()){
+                ImageView S = findViewById(R.id.imageView10);
+                S.setImageResource(R.drawable.sound_disabled);
+                mediaPlayer.setVolume(0F, 0F);
+            }
             mediaPlayer.start();
 
         }
     }
 
+    public void OpenFS(View view){
+        FrameLayout FastSettings = findViewById(R.id.FastSettingsLayout);
+        if (FastSettings.getVisibility()==View.VISIBLE){
+            FastSettings.setVisibility(View.GONE);
+        } else {
+            FastSettings.setVisibility(View.VISIBLE);
+        }
+    }
 
+    public void SoundMuteUnMute(View view){
+        ImageView SoundState = findViewById(R.id.imageView10);
+        if (SoundMuted) {
+            SoundState.setImageResource(R.drawable.sound_enabled);
+            SoundMuted=false;
+            mediaPlayer.setVolume(0.4F, 0.4F);
 
+        } else {
+            SoundState.setImageResource(R.drawable.sound_disabled);
+            SoundMuted=true;
+            mediaPlayer.setVolume(0F, 0F);
+        }
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("IsSoundMuted", SoundMuted).apply();
+
+    }
+    public void SetAutoPlay(View view){
+        ImageView AutoPlay = findViewById(R.id.imageView11);
+        if (AutoPlaying) {
+            AutoPlay.setImageResource(R.drawable.pause);
+            AutoPlaying=false;
+        } else {
+            AutoPlay.setImageResource(R.drawable.play);
+            AutoPlaying=true;
+        }
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("IsAutoPlay", AutoPlaying).apply();
+
+    }
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -722,28 +765,41 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        Runnable runnable = new Runnable() {
+        Runnable runnable2 = new Runnable() {
             @Override
             public void run() {
+                Log.d("AutoPlay", "AutoPlay: " + AutoPlaying);
 
-                if (checkMusicPlaying()) {
-                    mediaPlayer.pause();
-                } else {
-                    mediaPlayer.start();
+                try {
+                    if (AutoPlaying) {starter_con(null); }
+                    sleep(2000);
+                } catch (Exception ignored) {
                 }
-                try {sleep(1000);} catch (InterruptedException e) {};
+
 
                 run();
             }
         };
-        Thread thread = new Thread(runnable);
-        thread.start();
+        Thread thread2 = new Thread(runnable2);
+        thread2.start();
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        if (sharedPreferences.getBoolean("IsAutoPlay", false)){
+            ImageView AutoPlay = findViewById(R.id.imageView11);
+            AutoPlay.setImageResource(R.drawable.play);
+            AutoPlaying=true;
+        } else {
+            ImageView AutoPlay = findViewById(R.id.imageView11);
+            AutoPlay.setImageResource(R.drawable.pause);
+            AutoPlaying=false;
+        }
 
 
 
 
 
     }
+
 
     public void opensettings(View view){
         Intent intent = new Intent(this, settings.class);
@@ -764,13 +820,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (mediaPlayer != null && !mediaPlayer.isPlaying()) {
-            if (checkMusicPlaying()) {
-                mediaPlayer.setVolume(0.4F, 0.4F);
-            } else {
-                mediaPlayer.setVolume(1F, 1F);
+            if (!SoundMuted) {
+                if (checkMusicPlaying()) {
+                    mediaPlayer.setVolume(0.4F, 0.4F);
+                } else {
+                    mediaPlayer.setVolume(1F, 1F);
+                }
             }
             mediaPlayer.start();
         }
+
+
         SharedPreferences prefs = getSharedPreferences("GameUISettings", Context.MODE_PRIVATE);
 
         FastScroll = prefs.getBoolean("Anims", false);

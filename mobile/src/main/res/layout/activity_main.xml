@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:animateLayoutChanges="true"
     android:background="#000000"
     tools:context=".MainActivity"
@@ -137,6 +137,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/document" />
 
+
     <ImageView
         android:id="@+id/playerimage"
         android:layout_width="0dp"
@@ -179,6 +180,36 @@
     </androidx.recyclerview.widget.RecyclerView>
 
 
+    <FrameLayout
+        android:id="@+id/FastSettingsLayout"
+        android:layout_width="100px"
+        android:layout_height="220px"
+        android:animateLayoutChanges="true"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/textView5"
+        app:layout_constraintStart_toStartOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/textView5">
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="100px"
+            android:layout_height="110px"
+            android:onClick="SoundMuteUnMute"
+            android:padding="10px"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/sound_enabled" />
+
+        <ImageView
+            android:id="@+id/imageView11"
+            android:layout_width="100px"
+            android:layout_height="110px"
+            android:layout_marginTop="110px"
+            android:onClick="SetAutoPlay"
+            android:padding="10px"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/play" />
+    </FrameLayout>
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="0dp"
@@ -194,9 +225,12 @@
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:fontFamily="@font/toyz"
+        android:gravity="center"
+        android:onClick="OpenFS"
+        android:pointerIcon="hand"
         android:text="Игра"
         android:textColor="#FFFFFF"
         android:textSize="20sp"

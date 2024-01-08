@@ -163,9 +163,6 @@ public class MainActivity extends Activity {
 
         CBI=0;
 
-
-
-
         SetOnScreen(R.drawable.nothing,"","","");
         CurChoiceButton.setText(chtexts[0]);
 
@@ -220,23 +217,14 @@ public class MainActivity extends Activity {
     public boolean is_command_next() {
         try {
             String item = OrigDialogNames[clicks];
-            if (item.equals("#!(play_videoobject)") ||  item.equals("#!(playsound)") || item.equals("#!(stopsound)") || item.equals("#!(achievement_executor)") || item.equals("#!(makeknown_executor)") || item.equals("#!(write.album_executor)")) {
-                return true;
-
-            } else {
-                return false;
-            }
+            return item.equals("#!(play_videoobject)") || item.equals("#!(playsound)") || item.equals("#!(stopsound)") || item.equals("#!(achievement_executor)") || item.equals("#!(makeknown_executor)") || item.equals("#!(write.album_executor)");
         } catch (Exception e) {
             return false;
         }
     }
 
     public boolean num_checker(int indexToCheck) {
-        if (indexToCheck >= 0 && indexToCheck < DialogNamesL) {
-            return true;
-        } else {
-            return false;
-        }
+        return indexToCheck >= 0 && indexToCheck < DialogNamesL;
     }
 
     public void SetOnScreen(int ImageID, String name, String text, String ID) {
@@ -268,7 +256,7 @@ public class MainActivity extends Activity {
 
 
         if (showText) {
-            if (!text.equals("None") || !text.equals("nothing") || text.equals("None")) {
+            if (!text.equals("No    ne") || !text.equals("nothing") || text.equals("None")) {
                 Text.setText(text);
             } else {
                 Text.setText("");
@@ -408,7 +396,8 @@ public class MainActivity extends Activity {
                 }
 
                 //saving
-                //SaveInt("SavedClicks", clicks - 1);
+                Log.d("ADDName", String.valueOf(chapterID));
+                SaveInt("SavedClicks", clicks - 1);
                 //PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("AdditionalName", //).apply();
 
             }
@@ -506,7 +495,7 @@ public class MainActivity extends Activity {
     public void SaveInt(String key, int value){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt(key, value);
+        editor.putInt(key, value-1);
         editor.commit();
     }
     public int LoadInt(){
