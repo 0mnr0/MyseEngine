@@ -68,6 +68,10 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+
+        <meta-data android:name="android.game_mode_config"
+            android:resource="@xml/game_mode" />
+
     </application>
 
 </manifest>
