@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#000000"
-    android:orientation="vertical">
+    android:background="#00000000"
+    android:orientation="vertical"
+    app:layout_constraintDimensionRatio="h, 1:1">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:background="@color/white"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
         android:paddingBottom="14dp">
@@ -20,7 +24,8 @@
 
             android:layout_alignParentTop="true"
             android:layout_marginTop="1dp"
-            android:src="@drawable/ic_launcher_background" />
+            android:src="@drawable/ic_launcher_background"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/sender_text_view"
@@ -37,7 +42,8 @@
             android:text="Name"
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone" />
 
 
         <TextView
@@ -54,7 +60,22 @@
             android:padding="9dp"
             android:text="Message"
             android:textColor="@color/white"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:visibility="gone" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="15dp">
+
+            <VideoView
+                android:id="@+id/RoundedVideoView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center" />
+        </androidx.cardview.widget.CardView>
+
     </RelativeLayout>
 
 </LinearLayout>

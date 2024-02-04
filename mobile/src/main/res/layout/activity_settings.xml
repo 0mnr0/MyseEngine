@@ -60,7 +60,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/guideline24"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/switch1"
-                app:srcCompat="@drawable/charlie" />
+                app:srcCompat="@drawable/genius" />
 
             <Switch
                 android:id="@+id/switch1"
@@ -88,7 +88,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/guideline25"
                 app:layout_constraintTop_toTopOf="@+id/switch3"
-                app:srcCompat="@drawable/heyden_happy" />
+                app:srcCompat="@drawable/ic_launcher_foreground" />
 
             <Switch
                 android:id="@+id/switch3"
@@ -117,7 +117,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/switch4"
-                app:srcCompat="@drawable/river" />
+                app:srcCompat="@drawable/just_myse_dev" />
 
             <Switch
                 android:id="@+id/switch4"
@@ -147,7 +147,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/guideline25"
                 app:layout_constraintTop_toTopOf="@+id/switch5"
-                app:srcCompat="@drawable/shon" />
+                app:srcCompat="@drawable/legend" />
 
             <Switch
                 android:id="@+id/switch5"
@@ -176,7 +176,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/switch6"
-                app:srcCompat="@drawable/person5" />
+                app:srcCompat="@drawable/achievement_unlocked" />
 
             <Switch
                 android:id="@+id/switch6"

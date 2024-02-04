@@ -32,7 +32,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline46"
         app:layout_constraintStart_toStartOf="@+id/guideline39"
         app:layout_constraintTop_toTopOf="@+id/imageView3"
-        app:srcCompat="@drawable/charlie" />
+        app:srcCompat="@drawable/none" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline26"

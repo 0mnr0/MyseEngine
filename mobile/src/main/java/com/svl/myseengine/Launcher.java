@@ -41,7 +41,6 @@ public class Launcher extends AppCompatActivity {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.alpha_in, R.anim.alpha_out);
-            mediaPlayer.stop();
             finish();
         }
     }
@@ -67,16 +66,6 @@ public class Launcher extends AppCompatActivity {
 
 
         displayMetrics = this.getResources().getDisplayMetrics();
-
-        mediaPlayer = MediaPlayer.create(context, R.raw.s2);
-        show_toast(checkMusicPlaying());
-        if (checkMusicPlaying()) {
-
-            mediaPlayer.setVolume(0.4F, 0.4F);
-        }
-
-
-        mediaPlayer.start();
 
 
         Thread thread = new Thread(new MyRunnable());

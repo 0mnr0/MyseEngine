@@ -1,50 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
    <string-array name="C1_NewHistory_TheStart_ImagesOrAvatars" tools:ignore="TypographyEllipsis">
- 
-        <item>None</item>
-        <item>nothing</item>
-        <item>scissors</item>
-        <item>None</item>
-        <item>None</item>
-        <item>None</item>
-        <item>None</item>
-        <item>None</item>
-        <item>None</item>
-        <item>None</item>
-        <item>None</item>
-        <item>Погодите...|Что это..?</item>
-        <item>nothing</item>
-        <item>Ах...</item>
-        <item>nothing</item>
-        <item>Нет...|Нет... Этого не может быть, не может</item>
-        <item>nothing</item>
-        <item>Этого не может быть, этого не может быть!</item>
-        <item>nothing</item>
-        <item>charlie_scared</item>
-		<item>None</item>
-        <item>charlie_1</item>
-        <item>charlie</item>
-        <item>charlie</item>
-        <item>nothing</item>
-        <item>charlie_surprising</item>
-        <item>charlie_surprising</item>
-        <item>scissors</item>
-        <item>charlie_pass</item>
-        <item>eugene</item>
-        <item>None</item>
-        <item>None</item>
-        <item>photo2</item>
-        <item>nothing</item>
-        <item>Кто ты? Кто разрешил тебе разговаривать со мной?|Я не знаю тебя, отойди от моего лица</item>
-        <item>eugene_surprised</item>
-        <item>boss</item>
-        <item>photo3</item>
-        <item>boss</item>
-        <item>eugene_surprised2</item>
-        <item>eugene_undefined2</item>
-        <item>eugene_undefined2</item>
-        <item>eugene_undefined</item>
+
+        <item>legend</item>
+        <item>legend</item>
+        <item>genius</item>
+        <item>just_myse_dev</item>
+        <item>legend</item>
+        <item>legend</item>
 
    </string-array>
 </resources>

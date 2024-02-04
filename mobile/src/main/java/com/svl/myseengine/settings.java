@@ -133,8 +133,6 @@ public class settings extends AppCompatActivity {
             mn.setChecked(Monet);
         } else {
             Switch mn = findViewById(R.id.switch4);
-            ImageView river=(findViewById(R.id.imageView9));
-            river.setImageResource(R.drawable.river_angry);
             mn.setEnabled(false);
             mn.setText("Monet\nИспользование Monet тем недоступно на Android, верия которого ниже 12");
         }

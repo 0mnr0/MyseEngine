@@ -1,50 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
    <string-array name="C1_NewHistory_TheStart_DialogsOrTexts" tools:ignore="TypographyEllipsis">
- 
-        <item>Внимание! Эта визуальная новелла включает в себя различные триггеры. Для тех, кто подвергается им, пожалуйста воздержитесь от игры\n-Острое оружие, использование пистолетов\n-Повреждения и насилие</item>
-        <item>Append</item>
+
         <item>None</item>
-        <item>Пара ножниц</item>
-        <item>Выглядят так, словно они могут разрезать что угодно</item>
-        <item>Эти ножницы...</item>
-        <item>Могут позволить мне вырезать что угодно той формы, которую я хочу</item>
-        <item>Но...</item>
-        <item>Я должна быть аккуратна, поскольку они острые</item>
-        <item>...</item>
-        <item>Если я не буду аккуратна с ними..</item>
-        <item>None</item>
-        <item>v1</item>
-        <item>None</item>
-        <item>v2</item>
-        <item>None</item>
-        <item>v3</item>
-        <item>None</item>
-        <item>v4</item>
-        <item>*Крик*</item>
-		<item>s9</item>
-        <item>None</item>
-        <item>Аа...? Кто это только что был?</item>
-        <item>Это был сон?</item>
-        <item>0</item>
-        <item>..... Где я?</item>
-        <item>Так, для начала</item>
-        <item>None</item>
-        <item>Эти ножницы....?</item>
-        <item>...Хэй там, привет?</item>
-        <item>***Кто это? Они знают меня?***</item>
-        <item>***Я не помню***</item>
-        <item>None</item>
-        <item>0</item>
-        <item>None</item>
-        <item>...</item>
-        <item>...</item>
-        <item>None</item>
-        <item>Может быть её воспоминания были стёрты</item>
-        <item>Что? Её воспоминания?</item>
-        <item>...</item>
-        <item>Свет не тускнеет, я не думаю, что она врёт</item>
-        <item>И вы никогда не ошибаетесь, Босс</item>
+        <item>Its this one thing that got me trippin</item>
+        <item>Guess Im all in, my heart be skippin ahead</item>
+        <item>Got somethin thats one in a million</item>
+        <item>I just cant stop trippin, no-oh, oh-oh, oh</item>
+        <item>It\'s this one thing that got me trippin</item>
 
    </string-array>
 </resources>

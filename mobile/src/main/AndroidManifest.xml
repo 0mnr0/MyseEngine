@@ -13,8 +13,12 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        android:appCategory="game"
         android:theme="@style/Theme.CharlieTranclated"
         tools:targetApi="31">
+        <activity
+            android:name=".IntentTestActivity"
+            android:exported="false" />
         <activity
             android:name=".Dev"
             android:exported="false" />

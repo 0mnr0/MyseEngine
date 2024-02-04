@@ -3,6 +3,7 @@ package com.svl.myseengine;
 import static java.lang.Thread.sleep;
 
 import android.annotation.SuppressLint;
+import android.app.GameManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -720,6 +721,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         hideSystemUI();
 

@@ -33,7 +33,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline23"
         app:layout_constraintStart_toStartOf="@+id/textView9"
         app:layout_constraintTop_toTopOf="@+id/guideline34"
-        app:srcCompat="@drawable/a1" />
+        app:srcCompat="@drawable/achievement_unlocked" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline23"

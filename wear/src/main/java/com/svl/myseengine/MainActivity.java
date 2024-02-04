@@ -35,7 +35,7 @@ public class MainActivity extends Activity {
     boolean AllowClicking = true;
 
     String chapterID="C1";
-    int clicks = 0;
+    int clicks = -3;
     String last_btn_choice = "";
     String DialogNames = "";
     String DialogTexts = "";
@@ -256,7 +256,7 @@ public class MainActivity extends Activity {
 
 
         if (showText) {
-            if (!text.equals("No    ne") || !text.equals("nothing") || text.equals("None")) {
+            if (!text.equals("None") || !text.equals("nothing") || text.equals("None")) {
                 Text.setText(text);
             } else {
                 Text.setText("");
