@@ -463,7 +463,12 @@ public class MainActivity extends AppCompatActivity {
                         if (Monet){Appender="|"+MonetColor;}
 
                         int resourceId = getResources().getIdentifier(DialogImages[clicks], "drawable", getPackageName());
-                        messages.add(resourceId + "|" + DialogNames[clicks] + "|" + DialogTexts[clicks] + "|" + DialogIDS[clicks]+Appender);
+                        if (DialogNames[clicks].equals("#!(rounded_video)")){
+                            String videoId=Integer.toString(getResources().getIdentifier(DialogTexts[clicks], "raw", getPackageName()));
+                            messages.add(videoId + "|" + DialogNames[clicks] + "|" + DialogTexts[clicks] + "|" + DialogIDS[clicks]+Appender);
+                        }else{
+                            messages.add(resourceId + "|" + DialogNames[clicks] + "|" + DialogTexts[clicks] + "|" + DialogIDS[clicks]+Appender);
+                        }
                         scroller(view);
                         cmdwas = true;
                     }

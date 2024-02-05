@@ -1,14 +1,20 @@
 package com.svl.myseengine;
 
+import android.net.Uri;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.RoundedCorner;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.VideoView;
 
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.svl.myseengine.R;
@@ -59,7 +65,10 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
             case 304:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.one_button_disabled, parent, false);
                 break;
-
+            case 1001:
+            case 1002:
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dialog_roundedvideo_other, parent, false);
+                break;
 
             default:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.my_dialog, parent, false);
@@ -73,13 +82,13 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         String messageStr = messages.get(position);
-        Log.w("OutMessage",messageStr);
+        Log.w("OutMessage", messageStr);
         String[] parts = messageStr.split("\\|");
         int avatar = Integer.parseInt(parts[0]);
 
         String sender = parts[1];
         String message = parts[2];
-        Log.d("parts[3].equals('0')", String.valueOf(parts[3].equals("0")));
+        Log.d("parts", String.valueOf(parts[3]));
         isMe = parts[3].equals("1");
         isReader = parts[3].equals("0");
         isEmptyness = parts[3].equals("101");
@@ -108,6 +117,20 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
             }
         }
 
+        if (parts[3].equals("1001") || parts[3].equals("1002")) {
+            holder.video.setVideoURI(Uri.parse("android.resource://com.svl.myseengine/"+parts[0]));
+            holder.video.start();
+
+            if (parts[3].equals("1002")){
+// Assuming your CardView is named "cardView"
+                CardView cardView = holder.RoundedCard;
+                RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) cardView.getLayoutParams();
+                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
+                cardView.setLayoutParams(layoutParams);
+
+
+            }
+        }
 
     }
 
@@ -124,6 +147,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
         public TextView senderTextView;
         public TextView messageTextView;
         public Button choise_button;
+        public VideoView video;
+        public CardView RoundedCard;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -131,6 +156,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
             senderTextView = itemView.findViewById(R.id.sender_text_view);
             messageTextView = itemView.findViewById(R.id.message_text_view);
             choise_button = itemView.findViewById(R.id.choice_button);
+            video = itemView.findViewById(R.id.RoundedVideoView);
+            RoundedCard = itemView.findViewById(R.id.RoundedCardID);
         }
     }
 
@@ -163,16 +190,18 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
                             if (isMe.equals("-34") || isMe.equals("304")) {
                                 return 304; // возвращаем значение -304, если нужно предоставить выбор
                             } else {
-
-                                return 0;
+                                if (isMe.equals("1001") || isMe.equals("1002")) {
+                                    return 1001;
+                                } else {
+                                    return 0;
+                                }
                             }
-
                         }
                     }
                 }
+
             }
 
         }
-
     }
 }
