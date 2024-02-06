@@ -3,6 +3,7 @@ package com.svl.myseengine;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.net.Uri;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -11,9 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import androidx.appcompat.view.ContextThemeWrapper;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -83,8 +87,11 @@ public class MonetChatAdapter extends RecyclerView.Adapter<MonetChatAdapter.View
 
                 break;
             case 304:
-
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.one_button_disabled, parent, false);
+                break;
+            case 1001:
+            case 1002:
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dialog_roundedvideo_other, parent, false);
                 break;
 
 
@@ -122,7 +129,6 @@ public class MonetChatAdapter extends RecyclerView.Adapter<MonetChatAdapter.View
         holder.senderTextView.setText(sender);
         holder.messageTextView.setText(message);
 
-        // Если отправитель текущий пользователь, то текст сообщения должен быть справа
 
         if (isEmptyness) {
             holder.messageTextView.setGravity(Gravity.CENTER);
@@ -178,6 +184,23 @@ public class MonetChatAdapter extends RecyclerView.Adapter<MonetChatAdapter.View
         }
 
 
+        if (parts[3].equals("1001") || parts[3].equals("1002")) {
+            holder.video.setVideoURI(Uri.parse("android.resource://com.svl.myseengine/"+parts[0]));
+            if (holder.video.getTag().equals("true")) {
+                holder.video.start();
+                holder.video.setTag("false");
+            } else {
+                holder.video.seekTo(1);
+            }
+            if (parts[3].equals("1002")){
+                CardView cardView = holder.RoundedCard;
+                RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) cardView.getLayoutParams();
+                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
+                cardView.setLayoutParams(layoutParams);
+            }
+        }
+
+
 
     }
 
@@ -194,6 +217,8 @@ public class MonetChatAdapter extends RecyclerView.Adapter<MonetChatAdapter.View
         public TextView senderTextView;
         public TextView messageTextView;
         public Button choise_button;
+        public VideoView video;
+        public CardView RoundedCard;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -201,6 +226,8 @@ public class MonetChatAdapter extends RecyclerView.Adapter<MonetChatAdapter.View
             senderTextView = itemView.findViewById(R.id.sender_text_view);
             messageTextView = itemView.findViewById(R.id.message_text_view);
             choise_button = itemView.findViewById(R.id.choice_button);
+            video = itemView.findViewById(R.id.RoundedVideoView);
+            RoundedCard = itemView.findViewById(R.id.RoundedCardID);
         }
     }
 
@@ -245,8 +272,11 @@ public class MonetChatAdapter extends RecyclerView.Adapter<MonetChatAdapter.View
                             if (isMe.equals("-34") || isMe.equals("304")) {
                                 return 304; // возвращаем значение -304, если нужно предоставить выбор
                             } else {
-
-                                return 0;
+                                if (isMe.equals("1001") || isMe.equals("1002")) {
+                                    return 1001;
+                                } else {
+                                    return 0;
+                                }
                             }
 
                         }

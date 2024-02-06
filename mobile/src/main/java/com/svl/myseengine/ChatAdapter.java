@@ -1,9 +1,13 @@
 package com.svl.myseengine;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.res.TypedArray;
 import android.net.Uri;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.RoundedCorner;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +26,6 @@ import com.svl.myseengine.R;
 import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
-
     private List<String> messages;
     private boolean isMe = false;
     private boolean isReader = false;
@@ -111,7 +114,6 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
             if (isReader) {
                 holder.messageTextView.setGravity(Gravity.CENTER);
             }
-
             if (isChoice || isChoice2) {
                 holder.choise_button.setText(sender);
             }
@@ -119,16 +121,17 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
         if (parts[3].equals("1001") || parts[3].equals("1002")) {
             holder.video.setVideoURI(Uri.parse("android.resource://com.svl.myseengine/"+parts[0]));
-            holder.video.start();
-
+            if (holder.video.getTag().equals("true")) {
+                holder.video.start();
+                holder.video.setTag("false");
+            } else {
+                holder.video.seekTo(1);
+            }
             if (parts[3].equals("1002")){
-// Assuming your CardView is named "cardView"
                 CardView cardView = holder.RoundedCard;
                 RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) cardView.getLayoutParams();
                 layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
                 cardView.setLayoutParams(layoutParams);
-
-
             }
         }
 

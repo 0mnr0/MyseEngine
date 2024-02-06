@@ -42,6 +42,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -132,8 +133,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void show_toast(String text) {
-        Toast.makeText(this, text,
+    public void show_toast(Object text) {
+        Toast.makeText(this, text.toString(),
                 Toast.LENGTH_LONG).show();
     }
 
@@ -490,7 +491,9 @@ public class MainActivity extends AppCompatActivity {
                 //PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("AdditionalName", //).apply();
 
             }
-        }catch (Exception e){Log.e("Iventor09142", e+"\nText:"+DialogTexts[clicks]+"\nNames:"+DialogNames[clicks]+"\nImage:"+DialogImages[clicks]+"\nID:"+DialogIDS[clicks]);}
+        }catch (Exception e){
+            Log.e("Iventor09142", e+"\nText:"+DialogTexts[clicks]+"\nNames:"+DialogNames[clicks]+"\nImage:"+DialogImages[clicks]+"\nID:"+DialogIDS[clicks]);
+        }
     }
 
 
@@ -850,6 +853,7 @@ public class MainActivity extends AppCompatActivity {
             contextThemeWrapper.getTheme().resolveAttribute(android.R.attr.colorAccent,
                     typedValue, true);
             MonetColor = typedValue.data;
+            show_toast(MonetColor);
         }
 
 
