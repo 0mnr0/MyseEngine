@@ -251,13 +251,10 @@ public class MonetChatAdapter extends RecyclerView.Adapter<MonetChatAdapter.View
         String isMe = parts[3];
 
         try {
-            MonetType = Integer.parseInt(parts[4]);
-            Log.d("MonetUnpak", String.valueOf(Integer.parseInt(parts[4])));
-            MonetColor= Integer.parseInt(parts[5]);
-            if (MonetType==0){
-                MonetColor=Integer.parseInt(parts[5]);
-            }
-        }catch (Exception ignored){}
+            MonetType = Integer.parseInt(parts[5]);
+        }catch (Exception ignored){
+            MonetType=Color.WHITE;
+        }
 
         if (isMe.equals("0")) {
             return 0; // возвращаем значение 1, если сообщение отправлено нами
