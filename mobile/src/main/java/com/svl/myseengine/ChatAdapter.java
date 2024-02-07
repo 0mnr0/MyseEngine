@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.svl.myseengine.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
@@ -85,7 +86,18 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         String messageStr = messages.get(position);
-        Log.w("OutMessage", messageStr);
+
+        ArrayList<String> VideoMessages = new ArrayList<>();
+        boolean PlayThis=false;
+        for (int i = 0; i < messages.size(); i++) {
+            if (messages.get(i).contains("#!(rounded_video)")) {
+                VideoMessages.add(messages.get(i));
+                if (position == messages.size()-1){
+                    PlayThis=true;
+                }
+            }
+        }
+        Log.w("OutMessageVideoMessages", position + "," + messages.size());
         String[] parts = messageStr.split("\\|");
         int avatar = Integer.parseInt(parts[0]);
 
@@ -121,7 +133,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
         if (parts[3].equals("1001") || parts[3].equals("1002")) {
             holder.video.setVideoURI(Uri.parse("android.resource://com.svl.myseengine/"+parts[0]));
-            if (holder.video.getTag().equals("true")) {
+            if (PlayThis) {
                 holder.video.start();
                 holder.video.setTag("false");
             } else {
@@ -167,11 +179,11 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     @Override
     public int getItemViewType(int position) {
         String messageStr = messages.get(position);
+        Log.d("MessageStr", String.valueOf(messages));
         String[] parts = messageStr.split("\\|");
         String isMe = parts[3];
         Log.d("String IsME", isMe);
         if (isMe.equals("0")) {
-
             return 0; // возвращаем значение 1, если сообщение отправлено нами
         } else {
 
