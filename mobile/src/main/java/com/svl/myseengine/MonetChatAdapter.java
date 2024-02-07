@@ -20,6 +20,7 @@ import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -107,6 +108,18 @@ public class MonetChatAdapter extends RecyclerView.Adapter<MonetChatAdapter.View
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         String messageStr = messages.get(position);
+
+        ArrayList<String> VideoMessages = new ArrayList<>();
+        boolean PlayThis=false;
+        for (int i = 0; i < messages.size(); i++) {
+            if (messages.get(i).contains("#!(rounded_video)")) {
+                VideoMessages.add(messages.get(i));
+                if (position == messages.size()-1){
+                    PlayThis=true;
+                }
+            }
+        }
+
         String[] parts = messageStr.split("\\|");
 
         avatar = Integer.parseInt(parts[0]);
@@ -128,8 +141,8 @@ public class MonetChatAdapter extends RecyclerView.Adapter<MonetChatAdapter.View
 
         holder.senderTextView.setText(sender);
         holder.messageTextView.setText(message);
-
-
+        Log.wtf("MonetColorUnPackFinal", String.valueOf(MonetColor));
+        holder.senderTextView.setTextColor(MonetColor);
         if (isEmptyness) {
             holder.messageTextView.setGravity(Gravity.CENTER);
         } else {
@@ -186,9 +199,8 @@ public class MonetChatAdapter extends RecyclerView.Adapter<MonetChatAdapter.View
 
         if (parts[3].equals("1001") || parts[3].equals("1002")) {
             holder.video.setVideoURI(Uri.parse("android.resource://com.svl.myseengine/"+parts[0]));
-            if (holder.video.getTag().equals("true")) {
+            if (PlayThis) {
                 holder.video.start();
-                holder.video.setTag("false");
             } else {
                 holder.video.seekTo(1);
             }
@@ -235,11 +247,8 @@ public class MonetChatAdapter extends RecyclerView.Adapter<MonetChatAdapter.View
     public int getItemViewType(int position) {
 
         String messageStr = messages.get(position);
-
         String[] parts = messageStr.split("\\|");
-        Log.d("CommandUnpack",messageStr+"                  ==="+(parts[3])+"\\"+parts[4]);
         String isMe = parts[3];
-        Log.d("String IsME", isMe);
 
         try {
             MonetType = Integer.parseInt(parts[4]);

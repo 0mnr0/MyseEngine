@@ -779,8 +779,6 @@ public class MainActivity extends AppCompatActivity {
         Runnable runnable2 = new Runnable() {
             @Override
             public void run() {
-                Log.d("AutoPlay", "AutoPlay: " + AutoPlaying);
-
                 try {
                     if (AutoPlaying) {starter_con(null); }
                     sleep(2000);

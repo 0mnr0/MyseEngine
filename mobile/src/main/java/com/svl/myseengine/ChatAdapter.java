@@ -41,8 +41,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
-        // определяем, какой макет использовать в зависимости от viewType
-        Log.w("VuiewTyttpe", String.valueOf(viewType));
+
         switch (viewType) {
             case 0:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.my_dialog_me, parent, false);
@@ -103,7 +102,6 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
         String sender = parts[1];
         String message = parts[2];
-        Log.d("parts", String.valueOf(parts[3]));
         isMe = parts[3].equals("1");
         isReader = parts[3].equals("0");
         isEmptyness = parts[3].equals("101");
@@ -179,10 +177,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     @Override
     public int getItemViewType(int position) {
         String messageStr = messages.get(position);
-        Log.d("MessageStr", String.valueOf(messages));
         String[] parts = messageStr.split("\\|");
         String isMe = parts[3];
-        Log.d("String IsME", isMe);
         if (isMe.equals("0")) {
             return 0; // возвращаем значение 1, если сообщение отправлено нами
         } else {
