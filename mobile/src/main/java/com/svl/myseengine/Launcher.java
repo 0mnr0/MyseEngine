@@ -28,11 +28,6 @@ public class Launcher extends AppCompatActivity {
                 Toast.LENGTH_LONG).show();
     }
 
-    private boolean checkMusicPlaying() {
-        boolean isMusicPlaying = audioManager.isMusicActive();
-        return isMusicPlaying;
-    }
-
     public void launch_game(View view){
 
         boolean FLaunch = PreferenceManager.getDefaultSharedPreferences(context).getBoolean("FirstLaunch", true);
@@ -78,23 +73,16 @@ public class Launcher extends AppCompatActivity {
     private class MyRunnable implements Runnable {
         @Override
         public void run() {
-
-
-
-
             hideSystemUI();
 
             Group FLD=findViewById(R.id.FirstLoaderGroup);
             Group RTG=findViewById(R.id.GroupPresent);
-
-            //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this); // getActivity() for Fragment
 
             boolean FLaunch = PreferenceManager.getDefaultSharedPreferences(context).getBoolean("FirstLaunch", true);
 
             if (FLaunch){
                 RTG.setVisibility(View.GONE);
                 FLD.setVisibility(View.VISIBLE);
-
 
                 PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("SavedChapterName", "C1").apply();
                 PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putInt("SavedChapterMsg", 0).apply();
@@ -106,17 +94,7 @@ public class Launcher extends AppCompatActivity {
 
 
                 PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putBoolean("FirstLaunch", false).apply();
-
             }
-
-
-
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    // Скрываем диалоговое окно загрузки
-                }
-            });
         }
 
 

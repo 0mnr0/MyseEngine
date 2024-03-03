@@ -19,17 +19,6 @@ import android.widget.VideoView;
 public class video_player extends AppCompatActivity {
     private AudioManager audioManager;
 
-    private void requestAudioFocus() {
-        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-
-        int result = audioManager.requestAudioFocus(null, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
-
-        if (result != AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-            Log.d("AudioFocus Disabler", "Failed to gain audio focus");
-        }
-    }
-
-
     private void abandonAudioFocus() {
         if (audioManager != null) {
             audioManager.abandonAudioFocus(null);
@@ -70,12 +59,9 @@ public class video_player extends AppCompatActivity {
         vidvew.setVideoURI(Uri.parse(path));
         vidvew.start();
 
-        vidvew.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                finish();
-                overridePendingTransition(R.anim.alpha_in, R.anim.alpha_out);
-            }
+        vidvew.setOnCompletionListener(mp -> {
+            finish();
+            overridePendingTransition(R.anim.alpha_in, R.anim.alpha_out);
         });
 
     }

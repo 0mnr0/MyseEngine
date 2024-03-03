@@ -1,18 +1,16 @@
 package com.svl.myseengine;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class settings extends AppCompatActivity {
 
@@ -35,18 +33,12 @@ public class settings extends AppCompatActivity {
 
     public void Monet(View view) {
         Switch switch22 = (Switch) view;
-
         boolean isChecked = switch22.isChecked();
-
         SharedPreferences.Editor editor = getSharedPreferences("GameUISettings", Context.MODE_PRIVATE).edit();
         editor.putBoolean("Monet", isChecked).apply();
-
-        if (!MonetChanged){MonetChanged=true;}
-        else if (MonetChanged) {MonetChanged=false;}
-        Log.d("MonetState", String.valueOf(MonetChanged));
+        MonetChanged= !MonetChanged;
         if (MonetChanged) {show_toast("Окно игры перезапустится, все данные сохранены");}
-
-        else if (!MonetChanged){show_toast("Изменение отменено, окно не перезапустится");}
+        else {show_toast("Изменение отменено, окно не перезапустится");}
 
 
     }
@@ -103,7 +95,7 @@ public class settings extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
     }
-
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -138,7 +130,8 @@ public class settings extends AppCompatActivity {
         }
 
         boolean Videos = prefs.getBoolean("Videos", false);
-        if (Videos) {Switch vd = findViewById(R.id.switch5); vd.setChecked(Videos);}
+        if (Videos) {
+             Switch vd = findViewById(R.id.switch5); vd.setChecked(Videos);}
 
     }
 

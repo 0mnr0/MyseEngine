@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,13 +27,7 @@ import java.util.List;
 
 public class MonetChatAdapter extends RecyclerView.Adapter<MonetChatAdapter.ViewHolder> {
 
-    private List<String> messages;
-    private boolean isMe = false;
-    private boolean isReader = false;
-    private boolean isChoice = false;
-    private boolean isChoice2 = false;
-    private boolean isEmptyness = false;
-
+    private final List<String> messages;
 
 
     int avatar;
@@ -44,16 +39,14 @@ public class MonetChatAdapter extends RecyclerView.Adapter<MonetChatAdapter.View
         this.messages = messages;
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = null;
         // определяем, какой макет использовать в зависимости от viewType
         switch (viewType) {
             case 0:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.my_dialog_me, parent, false);
-                break;
-            case 1:
-                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.my_dialog, parent, false);
                 break;
             case 3:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.empty_diolg, parent, false);
@@ -71,7 +64,6 @@ public class MonetChatAdapter extends RecyclerView.Adapter<MonetChatAdapter.View
             case 303:
                 Log.v("BtnsIDheker", String.valueOf(MonetType));
                 if (MonetType==0){
-
                     view = LayoutInflater.from(parent.getContext()).inflate(R.layout.monet_first_button, parent, false);
                 }
                 else if (MonetType==1){
@@ -84,9 +76,8 @@ public class MonetChatAdapter extends RecyclerView.Adapter<MonetChatAdapter.View
                 else if (MonetType==3){
                     view = LayoutInflater.from(parent.getContext()).inflate(R.layout.monet_one_button, parent, false);
                 }
-
-
                 break;
+
             case 304:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.one_button_disabled, parent, false);
                 break;
@@ -106,7 +97,7 @@ public class MonetChatAdapter extends RecyclerView.Adapter<MonetChatAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         String messageStr = messages.get(position);
 
         ArrayList<String> VideoMessages = new ArrayList<>();
@@ -126,11 +117,11 @@ public class MonetChatAdapter extends RecyclerView.Adapter<MonetChatAdapter.View
 
         String sender = parts[1];
         String message = parts[2];
-        isMe = parts[3].equals("1");
-        isReader = parts[3].equals("0");
-        isEmptyness = parts[3].equals("101");
-        isChoice = parts[3].equals("303");
-        isChoice2 = parts[3].equals("304");
+        boolean isMe = parts[3].equals("1");
+        boolean isReader = parts[3].equals("0");
+        boolean isEmptyness = parts[3].equals("101");
+        boolean isChoice = parts[3].equals("303");
+        boolean isChoice2 = parts[3].equals("304");
 
 
 

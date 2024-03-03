@@ -18,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,27 +28,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
-    private List<String> messages;
-    private boolean isMe = false;
-    private boolean isReader = false;
-    private boolean isChoice = false;
-    private boolean isChoice2 = false;
-    private boolean isEmptyness = false;
+    private final List<String> messages;
 
     public ChatAdapter(List<String> messages) {
         this.messages = messages;
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
 
         switch (viewType) {
             case 0:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.my_dialog_me, parent, false);
-                break;
-            case 1:
-                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.my_dialog, parent, false);
                 break;
             case 3:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.empty_diolg, parent, false);
@@ -55,9 +49,6 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
             case 101:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.speakertext, parent, false);
                 break;
-
-
-            //Spawning Image
             case 202:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.image, parent, false);
                 break;
@@ -83,7 +74,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         String messageStr = messages.get(position);
 
         ArrayList<String> VideoMessages = new ArrayList<>();
@@ -102,11 +93,11 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
         String sender = parts[1];
         String message = parts[2];
-        isMe = parts[3].equals("1");
-        isReader = parts[3].equals("0");
-        isEmptyness = parts[3].equals("101");
-        isChoice = parts[3].equals("303");
-        isChoice2 = parts[3].equals("304");
+        boolean isMe = parts[3].equals("1");
+        boolean isReader = parts[3].equals("0");
+        boolean isEmptyness = parts[3].equals("101");
+        boolean isChoice = parts[3].equals("303");
+        boolean isChoice2 = parts[3].equals("304");
 
         holder.avatarImageView.setImageResource(avatar);
         holder.senderTextView.setText(sender);

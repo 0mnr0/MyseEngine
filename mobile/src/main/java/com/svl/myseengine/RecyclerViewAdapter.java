@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-    private List<DataItem> dataList;
+    private final List<DataItem> dataList;
 
     public RecyclerViewAdapter(List<DataItem> dataList) {
         this.dataList = dataList;
@@ -37,7 +37,7 @@ import java.util.List;public class RecyclerViewAdapter extends RecyclerView.Adap
         return dataList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView textView;
         TextView textView9;
         ImageView imageView;

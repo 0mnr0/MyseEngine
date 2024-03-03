@@ -31,8 +31,6 @@ public class flash extends AppCompatActivity {
         }
 
         Timer timer = new Timer();
-        String nc=getIntent().getStringExtra("NeedCleaner");
-
         timer.schedule(new TimerTask() {
             @Override
             public void run() {

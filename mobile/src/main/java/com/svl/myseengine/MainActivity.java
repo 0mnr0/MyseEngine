@@ -761,7 +761,6 @@ public class MainActivity extends AppCompatActivity {
             contextThemeWrapper.getTheme().resolveAttribute(android.R.attr.colorAccent,
                     typedValue, true);
             MonetColor = typedValue.data;
-            show_toast(MonetColor);
         }
 
 
