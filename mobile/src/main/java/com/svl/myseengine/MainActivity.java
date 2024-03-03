@@ -68,15 +68,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     private boolean checkMusicPlaying() {
-        boolean audioManager = ((AudioManager) getSystemService(Context.AUDIO_SERVICE)).isMusicActive() && mediaPlayer.isPlaying() == false;
-        return audioManager;
+        return ((AudioManager) getSystemService(Context.AUDIO_SERVICE)).isMusicActive() && !mediaPlayer.isPlaying();
     }
 
 
     @SuppressLint("NotifyDataSetChanged")
     public void scroller(View view) {
-        long startTime = System.nanoTime();
-
         adapter.notifyDataSetChanged();
         MonetAdapter.notifyDataSetChanged();
         RecyclerView recyclerView = findViewById(R.id.RecyclerViewMain);
@@ -102,12 +99,6 @@ public class MainActivity extends AppCompatActivity {
             recyclerView.postDelayed(autoScrollRunnable, 200);
 
         }
-        long endTime = System.nanoTime();
-
-        long executionTime = endTime - startTime;
-
-        Log.v("Scroll Timing:", String.valueOf(executionTime));
-
         clicking=true;
 
 
@@ -122,12 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void wait_startercon(int ms) {
         Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                starter_con(null);
-            }
-        }, ms);
+        handler.postDelayed(() -> starter_con(null), ms);
     }
 
 
@@ -160,22 +146,11 @@ public class MainActivity extends AppCompatActivity {
             try {
                 String[] btnchoices = DialogTexts[clicks].split("\\|");
                 String[] originallist = DialogImages[clicks].split("\\|");
-                Log.w("BCDStep 1:", Arrays.toString(btnchoices) + " | " + btnchoices.length);
                 if (btnchoices.length != 1) {
 
                     List<String> list = Arrays.asList(originallist);
                     int position = list.indexOf(buttonText);
-                    Log.w("BCDLog1:", String.valueOf(list) + " | " + buttonText + " || " + btnchoices[position]);
-
-                    Log.w("BCDLog2:", String.valueOf(position));
-
-                    Log.w("BtnChoiceDetector:", "Step 2 Success");
-
-
                     if (!last_btn_choice.equals("None")) {
-                        Log.d("Choiced", btnchoices[position] + " : " + buttonText);
-                        Log.w("BCDLog3:", btnchoices[position]);
-                        Log.w("BCDLog4:", buttonText);
                         PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("AdditionalName", btnchoices[position]).apply();
                         writeArrayDialogs(false);
 
@@ -190,15 +165,10 @@ public class MainActivity extends AppCompatActivity {
         try {
             if (num_checker(clicks + 1)) {
                 if (DialogNames[clicks + 1].equals("#!(play_videoobject)")) {
-
                     wait_startercon(120);
-
-
                 }
             }
-        } catch (Exception e) {
-        }
-
+        } catch (Exception ignored) {}
         scroller(null);
 
     }
@@ -214,11 +184,6 @@ public class MainActivity extends AppCompatActivity {
         boolean Monet=prefs0.getBoolean("Monet", false);
 
         if (!(Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)){Monet=false;}
-
-        Log.d("SpawnButton1", Arrays.toString(chtexts));
-        Log.d("SpawnButton2", String.valueOf(btns_count));
-
-        Log.w("Monet 'I' OUnt", String.valueOf(btns_count));
         if (chtexts.length > 1) {
             for (int i = 0; i < btns_count; i++) {
 
@@ -238,15 +203,9 @@ public class MainActivity extends AppCompatActivity {
                     MonetState=R.drawable.nothing;
                     messages.add(MonetState + "|" + chtexts[i] + "|" + "ChoiceService" + "|" + "303");
                 }
-
-                Log.v("NUMSHEK", String.valueOf(MonetState));
-
             }
         } else {
             if (Monet){
-
-
-
                 messages.add(R.drawable.nothing + "|" + chtexts[0] + "|" + "ChoiceService" + "|" + "303"+"|"+3+"|"+MonetColor);
             }else{
                 messages.add(R.drawable.nothing + "|" + chtexts[0] + "|" + "ChoiceService" + "|" + "303");
@@ -254,7 +213,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
         scroller(view);
-
         clicking = true;
 
     }
@@ -262,36 +220,21 @@ public class MainActivity extends AppCompatActivity {
     public void achivments() {
         AchivmentFragment fragment = new AchivmentFragment();
         fragment.show(getSupportFragmentManager(), "MyFragment");
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                fragment.dismiss();
-            }
-        }, 1200);
-
-
+        new Handler().postDelayed(fragment::dismiss, 1200);
     }
 
 
     public boolean is_command_next() {
         try {
             String item = DialogNames[clicks + 1];
-            if (item.equals("#!(playsound)") || item.equals("#!(stopsound)") || item.equals("#!(achievement_executor)") || item.equals("#!(makeknown_executor)") || item.equals("#!(write.album_executor)")) {
-                return true;
-            } else {
-                return false;
-            }
+            return item.equals("#!(playsound)") || item.equals("#!(stopsound)") || item.equals("#!(achievement_executor)") || item.equals("#!(makeknown_executor)") || item.equals("#!(write.album_executor)");
         } catch (Exception e) {
             return false;
         }
     }
 
     public boolean num_checker(int indexToCheck) {
-        if (indexToCheck >= 0 && indexToCheck < DialogNames.length) {
-            return true;
-        } else {
-            return false;
-        }
+        return indexToCheck >= 0 && indexToCheck < DialogNames.length;
     }
 
 
@@ -299,31 +242,15 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("DiscouragedApi")
     public void starter_con(View view) {
         try {
-            String CallingService = "";
-            String CallingText = "";
-            String CallingIDS = "";
-            String CallingImages = "";
 
             if (clicking) {
                 clicks++;
                 boolean cmdwas = false;
                 if (clicks < DialogNames.length) {
 
-                    CallingService = DialogNames[clicks] + " || ";
-                    CallingText = DialogTexts[clicks] + " || ";
-                    CallingIDS = DialogIDS[clicks] + " || ";
-                    CallingImages = DialogImages[clicks] + " || ";
-
-                    Log.w("CurFileNames: ", "'" + DialogNames[clicks] + "'");
-                    Log.w("CurFileTexts: ", "'" + DialogTexts[clicks] + "'");
-                    Log.w("CurFileIDS: ", "'" + DialogIDS[clicks] + "'");
-                    Log.w("CurFileImages: ", "'" + DialogImages[clicks] + "'");
-
                     if (DialogNames[clicks].equals("#!(clear_screen);")) {
-                        if (!cmdwas) {
-                            cleaning();
-                            cmdwas = true;
-                        }
+                        cleaning();
+                        cmdwas = true;
                     }
 
                     if (DialogNames[clicks].equals("#!(btn_executor)")) {
@@ -360,7 +287,7 @@ public class MainActivity extends AppCompatActivity {
                                 VideoPlayer.start();
                                 VideoPlayer.setVisibility(View.VISIBLE);
 
-                                VideoPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() { @Override public void onCompletion(MediaPlayer mp) {clicking=true; VideoPlayer.setVisibility(View.GONE);}});
+                                VideoPlayer.setOnCompletionListener(mp -> {clicking=true; VideoPlayer.setVisibility(View.GONE);});
 
                             } else {
                                 if (!skip) {
@@ -428,7 +355,7 @@ public class MainActivity extends AppCompatActivity {
                                 mediaPlayer.start();
 
 
-                            } catch (Exception e) {
+                            } catch (Exception ignored) {
                             }
 
                         }
@@ -478,13 +405,10 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
 
-
                 } else {
                     cleaning();
                     clicks = -1;
                 }
-
-                //saving
                 SaveInt("SavedClicks", clicks - 1);
                 //PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("AdditionalName", //).apply();
 
@@ -492,14 +416,6 @@ public class MainActivity extends AppCompatActivity {
         }catch (Exception e){
             Log.e("Iventor09142", e+"\nText:"+DialogTexts[clicks]+"\nNames:"+DialogNames[clicks]+"\nImage:"+DialogImages[clicks]+"\nID:"+DialogIDS[clicks]);
         }
-    }
-
-
-
-
-    public void setChapterName(String Name){
-        chapterID = Name;
-        PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("SavedChapterName", Name).apply();
     }
 
     public void open_album(View view){
@@ -535,9 +451,7 @@ public class MainActivity extends AppCompatActivity {
 
         int resId;
 
-        clicks = Integer.valueOf(PositionNumber);
-
-        Log.d("WriterArrays", AdditionalName + "_DialogsOrTexts");
+        clicks = Integer.parseInt(PositionNumber);
 
         PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("AdditionalName", AdditionalName).apply();
 
@@ -571,7 +485,7 @@ public class MainActivity extends AppCompatActivity {
 
         String AdditionalName = PreferenceManager.getDefaultSharedPreferences(this).getString("AdditionalName", "");
 
-        if (AdditionalName != "") {
+        if (!AdditionalName.isEmpty()) {
             AdditionalName = "_" + AdditionalName;
         }
 
@@ -620,8 +534,6 @@ public class MainActivity extends AppCompatActivity {
             public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
                 if (e.getAction() == MotionEvent.ACTION_DOWN) {
                     starter_con(null);
-
-
                 }
                 return false;
             }
@@ -637,7 +549,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(key, value);
-        editor.commit();
+        editor.apply();
     }
     public int LoadInt(){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -647,7 +559,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(key, value);
-        editor.commit();
+        editor.apply();
     }
     public String LoadStr(){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -668,7 +580,7 @@ public class MainActivity extends AppCompatActivity {
                     mediaPlayer.setVolume(0.4F, 0.4F);
                 }
                 mediaPlayer.prepare();
-            } catch (IOException e) {}
+            } catch (IOException ignored) {}
 
             mediaPlayer.setLooping(true);
             if (LoadMuting()){
