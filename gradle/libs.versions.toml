@@ -1,5 +1,6 @@
 [versions]
-agp = "8.4.0-alpha07"
+agp = "8.4.0-alpha12"
+annotation-version = "1.7.1"
 kotlin = "1.8.10"
 core-ktx = "1.9.0"
 junit = "4.13.2"
@@ -23,6 +24,7 @@ firebase-config = "21.4.0"
 activity = "1.8.0"
 
 [libraries]
+annotation = { module = "androidx.annotation:annotation", version.ref = "annotation-version" }
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }

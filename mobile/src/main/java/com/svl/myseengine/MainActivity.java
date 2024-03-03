@@ -3,7 +3,6 @@ package com.svl.myseengine;
 import static java.lang.Thread.sleep;
 
 import android.annotation.SuppressLint;
-import android.app.GameManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -42,7 +41,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity {
