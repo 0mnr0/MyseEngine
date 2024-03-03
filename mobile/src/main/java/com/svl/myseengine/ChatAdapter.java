@@ -87,7 +87,6 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
                 }
             }
         }
-        Log.w("OutMessageVideoMessages", position + "," + messages.size());
         String[] parts = messageStr.split("\\|");
         int avatar = Integer.parseInt(parts[0]);
 

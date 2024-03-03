@@ -86,7 +86,7 @@ public class MonetChatAdapter extends RecyclerView.Adapter<MonetChatAdapter.View
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dialog_roundedvideo_other, parent, false);
                 break;
 
-
+            case 1:
             default:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.my_dialog, parent, false);
                 break;

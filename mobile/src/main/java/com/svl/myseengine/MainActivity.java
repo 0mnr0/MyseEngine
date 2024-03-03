@@ -241,6 +241,10 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("DiscouragedApi")
     public void starter_con(View view) {
+
+        if (clicks == -2) {clicks++;}
+        Log.d("clicksCounter", String.valueOf(clicks));
+
         try {
 
             if (clicking) {
