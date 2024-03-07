@@ -61,22 +61,19 @@ public class wear_migarte extends AppCompatActivity {
         googleApiClient.connect();
 
         // Реализация слушателя
-        DataApi.DataListener dataListener = new DataApi.DataListener() {
-            @Override
-            public void onDataChanged(DataEventBuffer dataEventBuffer) {
-                for (DataEvent event : dataEventBuffer) {
-                    if (event.getType() == DataEvent.TYPE_CHANGED &&
-                            event.getDataItem().getUri().getPath().equals("/message")) {
-                        DataMapItem dataMapItem = DataMapItem.fromDataItem(event.getDataItem());
-                        String message = dataMapItem.getDataMap().getString("message");
-                        // Обработка полученного сообщения
+        DataApi.DataListener dataListener = dataEventBuffer -> {
+            for (DataEvent event : dataEventBuffer) {
+                if (event.getType() == DataEvent.TYPE_CHANGED &&
+                        event.getDataItem().getUri().getPath().equals("/message")) {
+                    DataMapItem dataMapItem = DataMapItem.fromDataItem(event.getDataItem());
+                    String message = dataMapItem.getDataMap().getString("message");
+                    // Обработка полученного сообщения
 
 
-                        Toast.makeText(wear_migarte.this, message,
-                                Toast.LENGTH_LONG).show();
+                    Toast.makeText(wear_migarte.this, message,
+                            Toast.LENGTH_LONG).show();
 
 
-                    }
                 }
             }
         };

@@ -17,7 +17,7 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:alpha="0.25"
+            android:alpha="0.3"
             android:onClick="prepare_texts"
             android:src="@drawable/nothing"
             app:layout_constraintBottom_toBottomOf="parent"

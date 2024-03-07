@@ -29,6 +29,7 @@ import com.svl.myseengine.databinding.ActivityMainBinding;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class MainActivity extends Activity {
 
@@ -68,17 +69,12 @@ public class MainActivity extends Activity {
 
     public void wait_startercon(int ms) {
         Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                prepare_texts(null);
-            }
-        }, ms);
+        handler.postDelayed(() -> prepare_texts(null), ms);
     }
 
 
-    public void show_toast(String text) {
-        Toast.makeText(this, text,
+    public void show_toast(Object text) {
+        Toast.makeText(this, text.toString(),
                 Toast.LENGTH_LONG).show();
     }
 
@@ -209,9 +205,7 @@ public class MainActivity extends Activity {
         }
     }
 
-    public void achivments() {
-
-    }
+    public void achivments() {}
 
 
     public boolean is_command_next() {
@@ -227,9 +221,8 @@ public class MainActivity extends Activity {
         return indexToCheck >= 0 && indexToCheck < DialogNamesL;
     }
 
-    public void SetOnScreen(int ImageID, String name, String text, String ID) {
-        Log.d("ScreenChanger", "SetOnScreen: " + ImageID + " | " + name + " | " + text);
-        boolean showImage = true;
+    public void SetOnScreen(int ImageID, String Avatarname, String text, String ID) {
+        Log.d("ScreenChanger", "SetOnScreen: " + ImageID + " | " + Avatarname + " | " + text);
         boolean showName = true;
         boolean showText = true;
 
@@ -246,21 +239,19 @@ public class MainActivity extends Activity {
         }
 
 
-        if (Name.equals("None") || Name.equals("nothing")) {
-            Name.setText(name);
+        Log.d("ScreenChangerNONE", "Is Avatarname NONE: " + (!Avatarname.equals("None")));
+        showName= !Avatarname.equals("None") && !Avatarname.equals("nothing");
+
+        if (showName){
+            Name.setText(Avatarname);
             Name.setVisibility(View.VISIBLE);
         } else {
             Name.setText("");
             Name.setVisibility(View.GONE);
         }
 
-
         if (showText) {
-            if (!text.equals("None") || !text.equals("nothing") || text.equals("None")) {
-                Text.setText(text);
-            } else {
-                Text.setText("");
-            }
+            Text.setText(text);
         } else {
             Text.setText("");
         }
@@ -281,16 +272,10 @@ public class MainActivity extends Activity {
     @SuppressLint("DiscouragedApi")
     public void starter_con(View view) {
         try {
-            Log.i("Allow,Clicking",String.valueOf(AllowClicking));
             if (AllowClicking) {
                 boolean cmdwas = false;
                 if (clicks < DialogNamesL) {
 
-
-                    Log.w("CurFileNames: ", "'" + DialogNames + "'");
-                    Log.w("CurFileTexts: ", "'" + DialogTexts + "'");
-                    Log.w("CurFileIDS: ", "'" + DialogIDS + "'");
-                    Log.w("CurFileImages: ", "'" + DialogImages + "'");
 
                     if (DialogNames.equals("#!(clear_screen);")) {
                         if (!cmdwas) {
@@ -496,7 +481,7 @@ public class MainActivity extends Activity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(key, value-1);
-        editor.commit();
+        editor.apply();
     }
     public int LoadInt(){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -512,9 +497,15 @@ public class MainActivity extends Activity {
     public void prepare_texts(View view){
         if (AllowClicking) {
             int resId;
-            Log.d("LoaderClicks", String.valueOf(clicks));
-            clicks = clicks + 1;
+
+            if (OrigDialogNames.length-1 == clicks){
+                clicks = 0;
+            } else {
+                clicks++;
+            }
+
             Log.d("LoadedClicks", String.valueOf(clicks));
+            Log.d("LoadedClicksCheck", OrigDialogNames.length + " == " + (clicks) + ": "+ (OrigDialogNames.length == (clicks)));
 
 
             SharedPreferences prefs = getSharedPreferences("AdditionalName", Context.MODE_PRIVATE);
@@ -525,42 +516,26 @@ public class MainActivity extends Activity {
                 AdditionalName = "_" + AdditionalName;
             }
 
-            Log.d("WriterArrays02", chapterID + AdditionalName);
 
             resId = getResources().getIdentifier(chapterID + AdditionalName + "_NamesOrServiceNames", "array", getPackageName());
             OrigDialogNames = getResources().getStringArray(resId);
-            Log.d("WriterArrays01", "DialogNames:" + chapterID + AdditionalName + "_NamesOrServiceNames");
 
             resId = getResources().getIdentifier(chapterID + AdditionalName + "_DialogsOrTexts", "array", getPackageName());
             OrigDialogTexts = getResources().getStringArray(resId);
-            Log.d("WriterArrays01", "DialogTexts:" + chapterID + AdditionalName + "_DialogsOrTexts");
 
             resId = getResources().getIdentifier(chapterID + AdditionalName + "_ImagesOrAvatars", "array", getPackageName());
             OrigDialogImages = getResources().getStringArray(resId);
-            Log.d("WriterArrays01", "DialogTexts:" + chapterID + AdditionalName + "_ImagesOrAvatars");
-
 
             resId = getResources().getIdentifier(chapterID + AdditionalName + "_TypedID", "array", getPackageName());
             OrigDialogIDS = getResources().getStringArray(resId);
-            Log.d("WriterArrays01", "DialogTexts:" + chapterID + AdditionalName + "_TypedID");
 
             DialogNamesL = OrigDialogTexts.length;
 
-            Log.d("prepare_texts0", OrigDialogNames[1]);
-            Log.d("prepare_texts0", OrigDialogTexts[1]);
-            Log.d("prepare_texts0", OrigDialogImages[1]);
-            Log.d("prepare_texts0", OrigDialogIDS[1]);
-            Log.d("prepare_clicks", String.valueOf(clicks));
 
             DialogNames = OrigDialogNames[clicks];
             DialogTexts = OrigDialogTexts[clicks];
             DialogImages = OrigDialogImages[clicks];
             DialogIDS = OrigDialogIDS[clicks];
-
-            Log.d("prepare_texts", DialogNames);
-            Log.d("prepare_texts", DialogTexts);
-            Log.d("prepare_texts", DialogImages);
-            Log.d("prepare_texts", DialogIDS);
 
             starter_con(null);
         }
@@ -596,7 +571,8 @@ public class MainActivity extends Activity {
         Name=findViewById(R.id.name);
         Text=findViewById(R.id.Text);
 
-        clicks=clicks+1;
+        clicks++;
+
 
         get_messages_from_phone();
 
@@ -614,19 +590,18 @@ public class MainActivity extends Activity {
                 .build();
         googleApiClient.connect();
 
-        Wearable.MessageApi.addListener(googleApiClient, new MessageApi.MessageListener() {
-            @Override
-            public void onMessageReceived(MessageEvent messageEvent) {
-                String path = messageEvent.getPath();
-                byte[] data = messageEvent.getData();
-                String message = new String(data, StandardCharsets.UTF_8);
-                show_toast(message);
-                if (message.equals("#!(get_save_file)"))
-                    {send_to_phone(null);}
-            }
+        Wearable.MessageApi.addListener(googleApiClient, messageEvent -> {
+            byte[] data = messageEvent.getData();
+            String message = messageEvent.getPath();
+            String command = new String(data, StandardCharsets.UTF_8);
+            Log.d("GetData:", message+", "+ Arrays.toString(data) + ", "+data);
+            show_toast(message);
+            if (message.equals("setting_rounded_videos"))
+                {SaveString(data);}
         });
     }
 
+    @SuppressLint("VisibleForTests")
     public void send_to_phone(View view){
         String txtmessage="This is backed text from wear";
 
@@ -638,11 +613,8 @@ public class MainActivity extends Activity {
 
 
         Task<DataItem> dataItemTask = Wearable.getDataClient(this).putDataItem(request);
-        dataItemTask.addOnSuccessListener(new OnSuccessListener<DataItem>() {
-            @Override
-            public void onSuccess(DataItem dataItem) {
-                // Действия при успешной отправке данных
-            }
+        dataItemTask.addOnSuccessListener(dataItem -> {
+            // Действия при успешной отправке данных
         });
 
     }
