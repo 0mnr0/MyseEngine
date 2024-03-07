@@ -483,6 +483,14 @@ public class MainActivity extends Activity {
         editor.putInt(key, value-1);
         editor.apply();
     }
+
+    public void SaveString(String key, String value){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(key, value);
+        editor.apply();
+    }
+
     public int LoadInt(){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         return sharedPreferences.getInt("SavedClicks", 0);
@@ -595,9 +603,9 @@ public class MainActivity extends Activity {
             String message = messageEvent.getPath();
             String command = new String(data, StandardCharsets.UTF_8);
             Log.d("GetData:", message+", "+ Arrays.toString(data) + ", "+data);
-            show_toast(message);
-            if (message.equals("setting_rounded_videos"))
-                {SaveString(data);}
+
+            //if (command.equals("setting_rounded_videos")){}
+            //{SaveString("setting_rounded_videos", show_toast("Настройка применена"););}
         });
     }
 
