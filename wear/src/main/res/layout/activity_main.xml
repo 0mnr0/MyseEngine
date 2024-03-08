@@ -109,6 +109,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
+            android:onClick="prepare_texts"
             android:tag="true" />
     </androidx.cardview.widget.CardView>
 
