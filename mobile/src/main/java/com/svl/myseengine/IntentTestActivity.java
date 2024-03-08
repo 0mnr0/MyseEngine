@@ -33,9 +33,5 @@ public class IntentTestActivity extends AppCompatActivity {
         hideSystemUI();
         setContentView(R.layout.activity_intent_test);
 
-        VideoView videoPlayer = findViewById(R.id.RoundedVideoView);
-        Uri myVideoUri= Uri.parse( "android.resource://" + getPackageName() + "/" + R.raw.v8);
-        videoPlayer.setVideoURI(myVideoUri);
-        videoPlayer.start();
     }
 }

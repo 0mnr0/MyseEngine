@@ -649,19 +649,21 @@ public class MainActivity extends Activity {
             byte[] data = messageEvent.getData();
             String message = messageEvent.getPath();
             String command = new String(data, StandardCharsets.UTF_8);
-            Log.d("GetData:", message+", "+ Arrays.toString(data) + ", "+data);
+            Log.d("GetData:", message+", "+ Arrays.toString(data) + ", "+ Arrays.toString(data));
 
             if (command.equals("setting_rounded_videos"))
                 {SaveBoolean("setting_rounded_videos", message); show_toast("Круглые видео: " + message);}
+            if (command.equals("setting_rounded_videos_get")) {
+                boolean rounded_value = GetBool("setting_rounded_videos", false);
+                send_to_phone("setting_rounded_videos|"+rounded_value);
+            }
         });
     }
 
     @SuppressLint("VisibleForTests")
-    public void send_to_phone(View view){
-        String txtmessage="This is backed text from wear";
-
+    public void send_to_phone(Object txtmessage) {
         PutDataMapRequest dataMap = PutDataMapRequest.create("/message");
-        dataMap.getDataMap().putString("message", txtmessage);
+        dataMap.getDataMap().putString("message", txtmessage.toString());
         dataMap.getDataMap().putLong("timestamp", System.currentTimeMillis());
         PutDataRequest request = dataMap.asPutDataRequest();
         request.setUrgent();

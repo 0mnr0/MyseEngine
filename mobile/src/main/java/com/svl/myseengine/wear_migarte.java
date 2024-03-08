@@ -1,28 +1,22 @@
 package com.svl.myseengine;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
-import android.content.SharedPreferences;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.wearable.DataApi;
 import com.google.android.gms.wearable.DataEvent;
-import com.google.android.gms.wearable.DataEventBuffer;
 import com.google.android.gms.wearable.DataMapItem;
 import com.google.android.gms.wearable.Node;
-import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.Wearable;
-
-import kotlinx.coroutines.channels.Send;
 
 public class wear_migarte extends AppCompatActivity {
 
@@ -57,27 +51,32 @@ public class wear_migarte extends AppCompatActivity {
         pb.setVisibility(View.INVISIBLE);
     }
 
-
+    @SuppressLint({"VisibleForTests", "UseSwitchCompatOrMaterialCode"})
     public void wear_listener(View view) {
-// Подключение к GoogleApiClient
         GoogleApiClient googleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(Wearable.API)
                 .build();
         googleApiClient.connect();
 
-        // Реализация слушателя
-        DataApi.DataListener dataListener = dataEventBuffer -> {
+         DataApi.DataListener dataListener = dataEventBuffer -> {
             for (DataEvent event : dataEventBuffer) {
-                if (event.getType() == DataEvent.TYPE_CHANGED &&
-                        event.getDataItem().getUri().getPath().equals("/message")) {
+                if (event.getType() == DataEvent.TYPE_CHANGED && event.getDataItem().getUri().getPath().equals("/message")) {
                     DataMapItem dataMapItem = DataMapItem.fromDataItem(event.getDataItem());
                     String message = dataMapItem.getDataMap().getString("message");
-                    // Обработка полученного сообщения
+                    assert message != null;
+                    String[] keys = message.split("\\|");
+                    Log.d("keys[0]", keys[0]);
+                    Log.d("keys[1]", keys[1]);
+                    if (keys[0].equals("setting_rounded_videos")) {
+                        boolean isChecked = Boolean.parseBoolean(keys[1]);
+                        Switch switch1 = findViewById(R.id.switch1);
+                        switch1.setChecked(isChecked);
+                        switch1.setEnabled(true);
+                    }
 
 
                     Toast.makeText(wear_migarte.this, message,
                             Toast.LENGTH_LONG).show();
-
 
                 }
             }
@@ -91,8 +90,7 @@ public class wear_migarte extends AppCompatActivity {
 
             @Override
             public void onConnectionSuspended(int i) {
-                Toast.makeText(wear_migarte.this, "Ошибка подключения",
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(wear_migarte.this, "Ошибка подключения", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -109,8 +107,8 @@ public class wear_migarte extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wear_migarte);
-
         wear_listener(null);
+        SendData("setting_rounded_videos_get","null");
     }
 
 }
