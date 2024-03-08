@@ -4,15 +4,21 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
+
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -103,7 +109,7 @@ public class MainActivity extends Activity {
 
                     List<String> list = Arrays.asList(originallist);
                     int position = list.indexOf(buttonText);
-                    Log.w("BCDLog1:", String.valueOf(list) + " | " + buttonText + " || " + btnchoices[position]);
+                    Log.w("BCDLog1:", list + " | " + buttonText + " || " + btnchoices[position]);
                     Log.w("BCDLog2:", String.valueOf(position));
                     Log.w("BtnChoiceDetector:", "Step 2 Success");
 
@@ -221,9 +227,12 @@ public class MainActivity extends Activity {
         return indexToCheck >= 0 && indexToCheck < DialogNamesL;
     }
 
+    //SetOnScreen()
     public void SetOnScreen(int ImageID, String Avatarname, String text, String ID) {
         Log.d("ScreenChanger", "SetOnScreen: " + ImageID + " | " + Avatarname + " | " + text);
-        boolean showName = true;
+        CardView RoundedCardID = findViewById(R.id.RoundedCardID);
+        ConstraintLayout CardID = findViewById(R.id.MainCardID);
+        boolean showName;
         boolean showText = true;
 
         ImageView avatarka = findViewById(R.id.imageView);
@@ -240,7 +249,7 @@ public class MainActivity extends Activity {
 
 
         Log.d("ScreenChangerNONE", "Is Avatarname NONE: " + (!Avatarname.equals("None")));
-        showName= !Avatarname.equals("None") && !Avatarname.equals("nothing");
+        showName = !Avatarname.equals("None") && !Avatarname.equals("nothing");
 
         if (showName){
             Name.setText(Avatarname);
@@ -261,6 +270,20 @@ public class MainActivity extends Activity {
             avatarka.setImageResource(ImageID);
         } catch (Exception ignored) {
         }
+
+        if (ID.equals("1001")){
+            RoundedCardID.setVisibility(View.VISIBLE);
+            CardID.setVisibility(View.GONE);
+            VideoView VideoPlayer = findViewById(R.id.RoundedVideoView);
+            VideoPlayer.setVideoURI(Uri.parse("android.resource://com.svl.myseengine/"+ImageID));
+            VideoPlayer.start();
+        } else {
+            RoundedCardID.setVisibility(View.GONE);
+            CardID.setVisibility(View.VISIBLE);
+
+        }
+
+
 
 
     }
@@ -346,6 +369,17 @@ public class MainActivity extends Activity {
 
                     if (DialogNames.equals("#!(stopsound)")) {
                         if (!cmdwas) {
+                            cmdwas = true;
+                        }
+                    }
+
+
+                    if (DialogNames.equals("#!(rounded_video)")) {
+                        if (!cmdwas) {
+                            if (GetBool("setting_rounded_videos", false)) {
+                                int videoId = getResources().getIdentifier(DialogTexts, "raw", getPackageName());
+                                SetOnScreen(videoId, "None", "None", "1001");
+                            }
                             cmdwas = true;
                         }
                     }
@@ -491,15 +525,28 @@ public class MainActivity extends Activity {
         editor.apply();
     }
 
+    public void SaveBoolean(String key, String value){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(key, Boolean.parseBoolean(value));
+        editor.apply();
+    }
+
     public int LoadInt(){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         return sharedPreferences.getInt("SavedClicks", 0);
     }
+
+    public boolean GetBool(String key, Boolean DefaultValue){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        return sharedPreferences.getBoolean(key, DefaultValue);
+    }
+
     public void PutString(String key, String value){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(key, value);
-        editor.commit();
+        editor.apply();
     }
 
     public void prepare_texts(View view){
@@ -604,8 +651,8 @@ public class MainActivity extends Activity {
             String command = new String(data, StandardCharsets.UTF_8);
             Log.d("GetData:", message+", "+ Arrays.toString(data) + ", "+data);
 
-            //if (command.equals("setting_rounded_videos")){}
-            //{SaveString("setting_rounded_videos", show_toast("Настройка применена"););}
+            if (command.equals("setting_rounded_videos"))
+                {SaveBoolean("setting_rounded_videos", message); show_toast("Круглые видео: " + message);}
         });
     }
 
