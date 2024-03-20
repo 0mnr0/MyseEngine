@@ -665,7 +665,15 @@ public class MainActivity extends Activity {
                 boolean rounded_value = GetBool("setting_rounded_videos", false);
                 send_to_phone("setting_rounded_videos|"+rounded_value);
             }
-
+            if (command.equals("push_save_file")) {
+                String[] keys = message.split(",");
+                show_toast(Arrays.toString(keys));
+                boolean OriginalClickingAllowed = AllowClicking;
+                AllowClicking = true;
+                returnArrayDialogsToPos(keys[1], keys[0], true);
+                prepare_texts(null);
+                AllowClicking = OriginalClickingAllowed;
+            }
         });
     }
 
