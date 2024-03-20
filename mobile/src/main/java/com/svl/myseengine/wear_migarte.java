@@ -1,7 +1,9 @@
 package com.svl.myseengine;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -44,10 +46,24 @@ public class wear_migarte extends AppCompatActivity {
 
     }
 
+    public int LoadInt(){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        return sharedPreferences.getInt("SavedClicks", -1);
+    }
+    public String LoadStr(){
+        String AdditionalName = PreferenceManager.getDefaultSharedPreferences(this).getString("AdditionalName", "");
+        if (!AdditionalName.isEmpty()) {
+            AdditionalName = "_" + AdditionalName;
+        }
+        return AdditionalName;
+    }
+
     public void upd(View view) {
         ProgressBar pb = findViewById(R.id.progressBar2);
         pb.setVisibility(View.VISIBLE);
-        SendData("#!(get_save_file)", "null");
+        int SavedClicks = LoadInt();
+        Log.d("LoadedAdditionalName", LoadStr());
+        SendData("push_save_file", (SavedClicks+2)+","+LoadStr());
         pb.setVisibility(View.INVISIBLE);
     }
 

@@ -38,6 +38,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class MainActivity extends Activity {
+    View ReClick = null;
 
     boolean AllowClicking = true;
 
@@ -300,6 +301,7 @@ public class MainActivity extends Activity {
                 if (clicks < DialogNamesL) {
 
 
+                    Log.d("Executing: ", DialogNames);
                     if (DialogNames.equals("#!(clear_screen);")) {
                         if (!cmdwas) {
                             cleaning();
@@ -379,7 +381,7 @@ public class MainActivity extends Activity {
                             if (GetBool("setting_rounded_videos", false)) {
                                 int videoId = getResources().getIdentifier(DialogTexts, "raw", getPackageName());
                                 SetOnScreen(videoId, "None", "None", "1001");
-                            }
+                            } else {clicks++; starter_con(view); SaveInt("SavedClicks", clicks - 1);}
                             cmdwas = true;
                         }
                     }
@@ -388,7 +390,7 @@ public class MainActivity extends Activity {
                     if (DialogNames.equals("#!(goto_xml)")) {
                         if (!cmdwas) {
                             Log.i("Goto_XML", "Trying To Go: " +chapterID + "_" + DialogTexts + " : " + DialogIDS);
-                            returnArrayDialogsToPos(DialogTexts, DialogIDS);
+                            returnArrayDialogsToPos(DialogTexts, DialogIDS, false);
                             Log.i("Goto_XML", "Sucsess migration");
 
                         }
@@ -435,7 +437,7 @@ public class MainActivity extends Activity {
 
     @SuppressLint("DiscouragedApi")
     //public void returnArrayDialogsPos(Имя xml файла, номер сообщения)
-    public void returnArrayDialogsToPos(String AdditionalName, String PositionNumber) {
+    public void returnArrayDialogsToPos(String AdditionalName, String PositionNumber, Boolean IsSaveFromPhone) {
         DialogNames = null;
         DialogTexts = null;
         DialogImages = null;
@@ -443,22 +445,25 @@ public class MainActivity extends Activity {
 
         int resId;
 
-        clicks = Integer.valueOf(PositionNumber);
+        clicks = Integer.parseInt(PositionNumber);
+        SaveInt("SavedClicks", clicks - 1);
+        String NeededChapter = chapterID;
+        if (!IsSaveFromPhone) {NeededChapter=NeededChapter+"_";}
 
-        Log.d("WriterArrays", AdditionalName + "_DialogsOrTexts");
+        Log.d("WriterArrays", chapterID+AdditionalName + "_DialogsOrTexts");
 
         PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("AdditionalName", AdditionalName).apply();
 
-        resId = getResources().getIdentifier(chapterID+"_"+AdditionalName + "_NamesOrServiceNames", "array", getPackageName());
+        resId = getResources().getIdentifier(NeededChapter+AdditionalName + "_NamesOrServiceNames", "array", getPackageName());
         OrigDialogNames = getResources().getStringArray(resId);
 
-        resId = getResources().getIdentifier(chapterID+"_"+AdditionalName + "_DialogsOrTexts", "array", getPackageName());
+        resId = getResources().getIdentifier(NeededChapter+AdditionalName + "_DialogsOrTexts", "array", getPackageName());
         OrigDialogTexts = getResources().getStringArray(resId);
 
-        resId = getResources().getIdentifier(chapterID+"_"+AdditionalName + "_ImagesOrAvatars", "array", getPackageName());
+        resId = getResources().getIdentifier(NeededChapter+AdditionalName + "_ImagesOrAvatars", "array", getPackageName());
         OrigDialogImages = getResources().getStringArray(resId);
 
-        resId = getResources().getIdentifier(chapterID+"_"+AdditionalName + "_TypedID", "array", getPackageName());
+        resId = getResources().getIdentifier(NeededChapter+AdditionalName + "_TypedID", "array", getPackageName());
         OrigDialogIDS = getResources().getStringArray(resId);
 
 
@@ -466,6 +471,7 @@ public class MainActivity extends Activity {
         Log.d("REWriterArrays", "DialogTexts:" + AdditionalName + "_DialogsOrTexts");
         Log.d("REWriterArrays", "DialogImages:" + AdditionalName + "_ImagesOrAvatars");
         Log.d("REWriterArrays", "DialogIDS:" + AdditionalName + "_TypedID");
+        Log.d("REWriterArrays", "SetClicks:" + clicks + ". NeedToSet:"+PositionNumber);
     }
 
     @SuppressLint("DiscouragedApi")
@@ -550,6 +556,7 @@ public class MainActivity extends Activity {
     }
 
     public void prepare_texts(View view){
+        if (ReClick == null){ReClick = view;}
         if (AllowClicking) {
             int resId;
 
@@ -587,6 +594,7 @@ public class MainActivity extends Activity {
             DialogNamesL = OrigDialogTexts.length;
 
 
+            if (clicks==-1){clicks++;}
             DialogNames = OrigDialogNames[clicks];
             DialogTexts = OrigDialogTexts[clicks];
             DialogImages = OrigDialogImages[clicks];
@@ -657,6 +665,7 @@ public class MainActivity extends Activity {
                 boolean rounded_value = GetBool("setting_rounded_videos", false);
                 send_to_phone("setting_rounded_videos|"+rounded_value);
             }
+
         });
     }
 

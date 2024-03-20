@@ -173,10 +173,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    void check_updates() {
-
-    }
-
     public void spawnbuttons(View view, int btns_count, String txt) {
         BSLT = btns_count;
         String[] chtexts = txt.split("\\|");
@@ -672,8 +668,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         register_clicks();
-
-        check_updates();
 
 
         FastScroll = prefs.getBoolean("Anims", false);
