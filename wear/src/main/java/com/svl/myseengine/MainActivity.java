@@ -381,7 +381,7 @@ public class MainActivity extends Activity {
                             if (GetBool("setting_rounded_videos", false)) {
                                 int videoId = getResources().getIdentifier(DialogTexts, "raw", getPackageName());
                                 SetOnScreen(videoId, "None", "None", "1001");
-                            } else {clicks++; starter_con(view); SaveInt("SavedClicks", clicks - 1);}
+                            } else {prepare_texts(view);}
                             cmdwas = true;
                         }
                     }
