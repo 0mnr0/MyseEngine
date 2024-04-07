@@ -2,13 +2,11 @@ package com.svl.myseengine;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,11 +19,8 @@ import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.wearable.DataItem;
-import com.google.android.gms.wearable.MessageApi;
-import com.google.android.gms.wearable.MessageEvent;
 import com.google.android.gms.wearable.PutDataMapRequest;
 import com.google.android.gms.wearable.PutDataRequest;
 import com.google.android.gms.wearable.Wearable;
@@ -35,7 +30,6 @@ import com.svl.myseengine.databinding.ActivityMainBinding;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 public class MainActivity extends Activity {
     View ReClick = null;
@@ -63,11 +57,6 @@ public class MainActivity extends Activity {
     ImageView avatarka;
     TextView Name;
     TextView Text;
-    String ID;
-
-
-
-
 
 
     public void cleaning() {
@@ -137,15 +126,14 @@ public class MainActivity extends Activity {
 
                 }
             }
-        } catch (Exception e) {
-        }
+        } catch (Exception ignored) {}
 
         AllowClicking=true;
 
     }
 
 
-    public void spawnbuttons(View view, int btns_count, String txt) {
+    public void spawnbuttons(int btns_count, String txt) {
         AllowClicking=false;
 
         boolean onebutton=false;
@@ -303,16 +291,14 @@ public class MainActivity extends Activity {
 
                     Log.d("Executing: ", DialogNames);
                     if (DialogNames.equals("#!(clear_screen);")) {
-                        if (!cmdwas) {
-                            cleaning();
-                            SetOnScreen(R.drawable.nothing,"","","");
-                            cmdwas = true;
-                        }
+                        cleaning();
+                        SetOnScreen(R.drawable.nothing,"","","");
+                        cmdwas = true;
                     }
 
                     if (DialogNames.equals("#!(btn_executor)")) {
                         if (!cmdwas) {
-                            spawnbuttons(view, Integer.parseInt(DialogIDS), DialogImages);
+                            spawnbuttons(Integer.parseInt(DialogIDS), DialogImages);
                             AllowClicking = false;
                             cmdwas = true;
                         }
@@ -426,15 +412,6 @@ public class MainActivity extends Activity {
     }
 
 
-
-
-    public void setChapterName(String Name){
-        chapterID = Name;
-        PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("SavedChapterName", Name).apply();
-    }
-
-
-
     @SuppressLint("DiscouragedApi")
     //public void returnArrayDialogsPos(Имя xml файла, номер сообщения)
     public void returnArrayDialogsToPos(String AdditionalName, String PositionNumber, Boolean IsSaveFromPhone) {
@@ -485,7 +462,7 @@ public class MainActivity extends Activity {
 
         String AdditionalName = PreferenceManager.getDefaultSharedPreferences(this).getString("AdditionalName", "");
 
-        if (AdditionalName != "") {
+        if (!AdditionalName.isEmpty()) {
             AdditionalName = "_" + AdditionalName;
         }
 
@@ -566,17 +543,11 @@ public class MainActivity extends Activity {
                 clicks++;
             }
 
-            Log.d("LoadedClicks", String.valueOf(clicks));
-            Log.d("LoadedClicksCheck", OrigDialogNames.length + " == " + (clicks) + ": "+ (OrigDialogNames.length == (clicks)));
 
-
-            SharedPreferences prefs = getSharedPreferences("AdditionalName", Context.MODE_PRIVATE);
             String AdditionalName = "NewHistory_TheStart";
 
 
-            if (AdditionalName != "") {
-                AdditionalName = "_" + AdditionalName;
-            }
+            AdditionalName = "_" + AdditionalName;
 
 
             resId = getResources().getIdentifier(chapterID + AdditionalName + "_NamesOrServiceNames", "array", getPackageName());
@@ -685,11 +656,6 @@ public class MainActivity extends Activity {
         PutDataRequest request = dataMap.asPutDataRequest();
         request.setUrgent();
 
-
-        Task<DataItem> dataItemTask = Wearable.getDataClient(this).putDataItem(request);
-        dataItemTask.addOnSuccessListener(dataItem -> {
-            // Действия при успешной отправке данных
-        });
 
     }
 
