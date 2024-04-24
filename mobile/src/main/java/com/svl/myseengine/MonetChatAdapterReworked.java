@@ -169,6 +169,7 @@ public class MonetChatAdapterReworked extends RecyclerView.Adapter<MonetChatAdap
         if (parts[3].equals("1001") || parts[3].equals("1002")) {
             holder.video.setVideoURI(Uri.parse("android.resource://com.svl.myseengine/"+parts[0]));
             if (PlayThis) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {holder.video.setAudioFocusRequest(AudioManager.AUDIOFOCUS_NONE);}
                 holder.video.start();
                 holder.video.setTag("false");
             } else {

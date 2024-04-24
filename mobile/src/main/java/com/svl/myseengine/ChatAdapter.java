@@ -1,18 +1,13 @@
 package com.svl.myseengine;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.res.TypedArray;
+import android.media.AudioManager;
 import android.net.Uri;
-import android.util.Log;
+import android.os.Build;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.RoundedCorner;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -21,8 +16,6 @@ import android.widget.VideoView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.svl.myseengine.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -122,6 +115,9 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
         if (parts[3].equals("1001") || parts[3].equals("1002")) {
             holder.video.setVideoURI(Uri.parse("android.resource://com.svl.myseengine/"+parts[0]));
             if (PlayThis) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    holder.video.setAudioFocusRequest(AudioManager.AUDIOFOCUS_NONE);
+                }
                 holder.video.start();
                 holder.video.setTag("false");
             } else {
