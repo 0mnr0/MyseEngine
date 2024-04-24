@@ -94,7 +94,7 @@
         android:layout_margin="10dp"
         android:background="@drawable/monet_one_btn_choise"
         android:enabled="false"
-        android:onClick="AskForSaveFile"
+        android:onClick="RoundedVideo"
         android:padding="8dp"
         android:text="Видео кружки \nВключить формат видео-кружков для часов"
         android:textColor="#FFFFFF"
