@@ -628,7 +628,7 @@ public class MainActivity extends Activity {
             byte[] data = messageEvent.getData();
             String message = messageEvent.getPath();
             String command = new String(data, StandardCharsets.UTF_8);
-            Log.d("GetData:", message+", "+ Arrays.toString(data) + ", "+ Arrays.toString(data));
+            Log.d("GetData:", command+","+message);
 
             if (command.equals("setting_rounded_videos"))
                 {SaveBoolean("setting_rounded_videos", message); show_toast("Круглые видео: " + message);}
@@ -644,6 +644,11 @@ public class MainActivity extends Activity {
                 prepare_texts(null);
                 AllowClicking = OriginalClickingAllowed;
             }
+            if (command.equals("get_save_file")) {
+                String AdditionalName = PreferenceManager.getDefaultSharedPreferences(this).getString("AdditionalName", "");
+                String Clicks = String.valueOf(LoadInt());
+                send_to_phone("get_save_file|"+AdditionalName+","+Clicks);
+            }
         });
     }
 
@@ -654,8 +659,8 @@ public class MainActivity extends Activity {
         dataMap.getDataMap().putLong("timestamp", System.currentTimeMillis());
         PutDataRequest request = dataMap.asPutDataRequest();
         request.setUrgent();
-
-
+        Wearable.getDataClient(this).putDataItem(request);
     }
+
 
 }

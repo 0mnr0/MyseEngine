@@ -1,6 +1,7 @@
 package com.svl.myseengine;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -44,6 +45,13 @@ public class wear_migarte extends AppCompatActivity {
             public void onConnectionSuspended(int i) {}
         });
 
+    }
+
+    public void SaveInt(String key, int value){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(key, value);
+        editor.apply();
     }
 
     public int LoadInt(){
@@ -94,8 +102,22 @@ public class wear_migarte extends AppCompatActivity {
                         switch1.setEnabled(true);
                     }
 
+                    if (keys[0].equals("get_save_file")) {
+                        String[] DataInKey = keys[1].split(",");
+                        PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("AdditionalName", DataInKey[0].substring(1)).apply();
+                        SaveInt("SavedClicks", Integer.parseInt(DataInKey[1])+1);
+                        Intent intent = new Intent(this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
 
-                    Toast.makeText(wear_migarte.this, message,
+                        finish();
+                        overridePendingTransition(R.anim.alpha_in, R.anim.alpha_out);
+
+                    }
+
+
+
+                        Toast.makeText(wear_migarte.this, message,
                             Toast.LENGTH_LONG).show();
 
                 }
