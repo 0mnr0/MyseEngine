@@ -2,16 +2,17 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
    <string-array name="C1_NewHistory_TheStart_ImagesOrAvatars" tools:ignore="TypographyEllipsis">
 
-        <item>legend</item>
-        <item>legend</item>
         <item>genius</item>
-        <item>just_myse_dev</item>
-        <item>legend</item>
-        <item>legend</item>
+        <item>balance</item>
         <item>None</item>
-        <item>None</item>
-        <item>None</item>
-		<item>1|2</item>
+        <item>genius</item>
+        <item>genius</item>
+        <item>genius</item>
+        <item>genius</item>
+        <item>balance2</item>
+        <item>genius</item>
+        <item>nothing</item>
+        <item>nothing</item>
 
    </string-array>
 </resources>

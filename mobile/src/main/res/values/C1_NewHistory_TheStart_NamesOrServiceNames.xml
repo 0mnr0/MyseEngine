@@ -2,16 +2,17 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
    <string-array name="C1_NewHistory_TheStart_NamesOrServiceNames" tools:ignore="TypographyEllipsis">
 
+        <item>Андрей</item>
         <item>ImagerService</item>
-        <item>Легендыч</item>
-        <item>Умненыч</item>
-        <item>MyseDev</item>
-        <item>Легендыч</item>
-        <item>Легендыч</item>
-        <item>#!(rounded_video)</item>
-        <item>#!(rounded_video)</item>
-        <item>#!(rounded_video)</item>
-		<item>#!(btn_executor)</item>
+        <item>None</item>
+        <item>Андрей</item>
+        <item>Андрей</item>
+        <item>Андрей</item>
+        <item>Андрей</item>
+        <item>ImagerService</item>
+        <item>Андрей</item>
+        <item>#!(achievement_executor)</item>
+        <item>#!(clear_screen);</item>
 
 
    </string-array>
