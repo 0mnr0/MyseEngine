@@ -1,11 +1,11 @@
 package com.svl.myseengine;
 
-import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.media.AudioManager;
 import android.net.Uri;
+import android.os.Build;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,33 +17,26 @@ import android.widget.TextView;
 import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class MonetChatAdapter extends RecyclerView.Adapter<MonetChatAdapter.ViewHolder> {
-
+public class MonetChatAdapterReworked extends RecyclerView.Adapter<MonetChatAdapterReworked.ViewHolder> {
     private final List<String> messages;
+    public String MonetColor;
+    public Integer MonetType;
 
-
-    int avatar;
-
-    private int MonetType;
-    private int MonetColor;
-
-    public MonetChatAdapter(List<String> messages) {
+    public MonetChatAdapterReworked(List<String> messages) {
         this.messages = messages;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = null;
-        // определяем, какой макет использовать в зависимости от viewType
+        View view;
+
         switch (viewType) {
             case 0:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.my_dialog_me, parent, false);
@@ -54,15 +47,11 @@ public class MonetChatAdapter extends RecyclerView.Adapter<MonetChatAdapter.View
             case 101:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.speakertext, parent, false);
                 break;
-
-
-            //Spawning Image
             case 202:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.image, parent, false);
                 break;
 
             case 303:
-                Log.v("BtnsIDheker", String.valueOf(MonetType));
                 if (MonetType==0){
                     view = LayoutInflater.from(parent.getContext()).inflate(R.layout.monet_first_button, parent, false);
                 }
@@ -72,8 +61,7 @@ public class MonetChatAdapter extends RecyclerView.Adapter<MonetChatAdapter.View
                 else if (MonetType==2){
                     view = LayoutInflater.from(parent.getContext()).inflate(R.layout.monet_end_button, parent, false);
                 }
-
-                else if (MonetType==3){
+                else {
                     view = LayoutInflater.from(parent.getContext()).inflate(R.layout.monet_one_button, parent, false);
                 }
                 break;
@@ -86,7 +74,6 @@ public class MonetChatAdapter extends RecyclerView.Adapter<MonetChatAdapter.View
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dialog_roundedvideo_other, parent, false);
                 break;
 
-            case 1:
             default:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.my_dialog, parent, false);
                 break;
@@ -110,10 +97,8 @@ public class MonetChatAdapter extends RecyclerView.Adapter<MonetChatAdapter.View
                 }
             }
         }
-
         String[] parts = messageStr.split("\\|");
-
-        avatar = Integer.parseInt(parts[0]);
+        int avatar = Integer.parseInt(parts[0]);
 
         String sender = parts[1];
         String message = parts[2];
@@ -123,37 +108,31 @@ public class MonetChatAdapter extends RecyclerView.Adapter<MonetChatAdapter.View
         boolean isChoice = parts[3].equals("303");
         boolean isChoice2 = parts[3].equals("304");
 
-
-
-
-        try {
-            holder.avatarImageView.setImageResource(avatar);
-        } catch (Exception ignored) {}
-
+        holder.avatarImageView.setImageResource(avatar);
         holder.senderTextView.setText(sender);
         holder.messageTextView.setText(message);
-        Log.wtf("MonetColorUnPackFinal", String.valueOf(MonetColor));
-        holder.senderTextView.setTextColor(MonetColor);
+
+        // Если отправитель текущий пользователь, то текст сообщения должен быть справа
         if (isEmptyness) {
             holder.messageTextView.setGravity(Gravity.CENTER);
         } else {
 
-            if (isMe) {
-                holder.senderTextView.setTextColor(MonetColor);
-            } else {
-                holder.senderTextView.setTextColor(MonetColor);
+            try{holder.senderTextView.setTextColor(Integer.parseInt(MonetColor));}
+            catch(Exception i) {
+                Log.e("TextPainting", String.valueOf(i));}
+
+            if (!isMe) {
                 holder.senderTextView.setGravity(Gravity.START);
                 holder.messageTextView.setGravity(Gravity.START);
             }
             if (isReader) {
-                holder.senderTextView.setTextColor(MonetColor);
                 holder.messageTextView.setGravity(Gravity.CENTER);
             }
-
-            if (isChoice2) {holder.choise_button.setText(sender);}
+            if (isChoice || isChoice2) {
+                holder.choise_button.setText(sender);
+            }
 
             if (isChoice) {
-                holder.choise_button.setText(sender);
                 try {
                     GradientDrawable drawable = new GradientDrawable();
                     GradientDrawable drawable2 = new GradientDrawable();
@@ -176,7 +155,7 @@ public class MonetChatAdapter extends RecyclerView.Adapter<MonetChatAdapter.View
 
 
                     drawable.setSize(0, 0);
-                    drawable.setStroke(5, MonetColor);
+                    drawable.setStroke(5, Integer.parseInt(MonetColor));
 
                     holder.choise_button.setBackground(drawable2);
                     holder.choise_button.setForeground(drawable);
@@ -184,14 +163,14 @@ public class MonetChatAdapter extends RecyclerView.Adapter<MonetChatAdapter.View
 
 
                 }catch (Exception e){Log.d("Exeption", String.valueOf(e));}
-            }
+                }
         }
-
 
         if (parts[3].equals("1001") || parts[3].equals("1002")) {
             holder.video.setVideoURI(Uri.parse("android.resource://com.svl.myseengine/"+parts[0]));
             if (PlayThis) {
                 holder.video.start();
+                holder.video.setTag("false");
             } else {
                 holder.video.seekTo(1);
             }
@@ -202,8 +181,6 @@ public class MonetChatAdapter extends RecyclerView.Adapter<MonetChatAdapter.View
                 cardView.setLayoutParams(layoutParams);
             }
         }
-
-
 
     }
 
@@ -236,16 +213,16 @@ public class MonetChatAdapter extends RecyclerView.Adapter<MonetChatAdapter.View
 
     @Override
     public int getItemViewType(int position) {
-
         String messageStr = messages.get(position);
         String[] parts = messageStr.split("\\|");
         String isMe = parts[3];
 
+        try{MonetType = Integer.parseInt(parts[5]);}catch(Exception ignored){MonetType=0;}
+
         try {
-            MonetType = Integer.parseInt(parts[5]);
-        }catch (Exception ignored){
-            MonetType=Color.WHITE;
-        }
+            MonetColor = parts[4];
+        }catch (Exception e){Log.e("MonetColorError", String.valueOf(e)); Log.d("messageStr", messageStr);}
+
 
         if (isMe.equals("0")) {
             return 0; // возвращаем значение 1, если сообщение отправлено нами
@@ -275,13 +252,12 @@ public class MonetChatAdapter extends RecyclerView.Adapter<MonetChatAdapter.View
                                     return 0;
                                 }
                             }
-
                         }
                     }
                 }
+
             }
 
         }
-
     }
 }

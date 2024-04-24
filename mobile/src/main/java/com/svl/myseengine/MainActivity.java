@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     List<String> messages = new ArrayList<>();
     ChatAdapter adapter = new ChatAdapter(messages);
-    MonetChatAdapter MonetAdapter = new MonetChatAdapter(messages);
+    MonetChatAdapterReworked MonetAdapter = new MonetChatAdapterReworked(messages);
     RecyclerView RecyclerView;
     private GoogleApiClient googleApiClient;
     private DataApi.DataListener dataListener;
@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if (i == btns_count -1 ) {MonetState=2;}
 
-                    messages.add(R.drawable.nothing + "|" + chtexts[i] + "|" + "ChoiceService" + "|" + "303" +"|" + MonetState +"|" +MonetColor);
+                    messages.add(R.drawable.nothing + "|" + chtexts[i] + "|" + "ChoiceService" + "|" + "303" +"|" + MonetColor +"|"+MonetState);
 
 
                 }
@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
             }
         } else {
             if (Monet){
-                messages.add(R.drawable.nothing + "|" + chtexts[0] + "|" + "ChoiceService" + "|" + "303"+"|"+3+"|"+MonetColor);
+                messages.add(R.drawable.nothing + "|" + chtexts[0] + "|" + "ChoiceService" + "|" + "303"+"|"+MonetColor+"|3");
             }else{
                 messages.add(R.drawable.nothing + "|" + chtexts[0] + "|" + "ChoiceService" + "|" + "303");
             }
