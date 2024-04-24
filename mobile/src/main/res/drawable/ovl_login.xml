@@ -1,4 +1,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="oval">
-    <solid android:color="#FF0000" /> <!-- Цвет круга -->
+    android:shape="rectangle">
+    <solid android:color="@color/black">
+
+    </solid>
+    <corners android:radius="30dp" />
 </shape>
