@@ -63,7 +63,7 @@ public class wear_migarte extends AppCompatActivity {
         pb.setVisibility(View.VISIBLE);
         int SavedClicks = LoadInt();
         Log.d("LoadedAdditionalName", LoadStr());
-        SendData("push_save_file", (SavedClicks+2)+","+LoadStr());
+        SendData("push_save_file", SavedClicks+","+LoadStr());
         pb.setVisibility(View.INVISIBLE);
     }
 

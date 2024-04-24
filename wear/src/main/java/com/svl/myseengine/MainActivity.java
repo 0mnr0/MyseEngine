@@ -638,7 +638,6 @@ public class MainActivity extends Activity {
             }
             if (command.equals("push_save_file")) {
                 String[] keys = message.split(",");
-                show_toast(Arrays.toString(keys));
                 boolean OriginalClickingAllowed = AllowClicking;
                 AllowClicking = true;
                 returnArrayDialogsToPos(keys[1], keys[0], true);
