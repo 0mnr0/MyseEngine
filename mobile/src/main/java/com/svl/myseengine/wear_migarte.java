@@ -58,6 +58,10 @@ public class wear_migarte extends AppCompatActivity {
         return AdditionalName;
     }
 
+    public void AskForSaveFile(View view) {
+        SendData("get_save_file", "");
+    }
+
     public void upd(View view) {
         ProgressBar pb = findViewById(R.id.progressBar2);
         pb.setVisibility(View.VISIBLE);
