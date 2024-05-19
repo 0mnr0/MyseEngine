@@ -342,25 +342,24 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     if (DialogNames[clicks].equals("#!(playsound)")) {
-                        if (!cmdwas) {
-                            cmdwas = true;
-                            try {
-                                mediaPlayer.reset();
-                                int resId = getResources().getIdentifier(DialogTexts[clicks], "raw", getPackageName());
-                                mediaPlayer.setDataSource(this, Uri.parse("android.resource://" + this.getPackageName() + "/" + resId));
+                        cmdwas = true;
+                        try {
+                            mediaPlayer.stop();
+                            mediaPlayer.reset();
+                            int resId = getResources().getIdentifier(DialogTexts[clicks], "raw", getPackageName());
+                            mediaPlayer.setDataSource(this, Uri.parse("android.resource://" + this.getPackageName() + "/" + resId));
 
-                                PutString("LastSound", DialogTexts[clicks]);
+                            PutString("LastSound", DialogTexts[clicks]);
 
-                                mediaPlayer.prepare();
-                                mediaPlayer.setLooping(true);
-                                mediaPlayer.start();
-
-
-                            } catch (Exception i) {
-                                Log.e("#!(playsound)", i.toString());
-                            }
-
+                            mediaPlayer.prepare();
+                            mediaPlayer.setLooping(true);
+                            mediaPlayer.start();
+                            starter_con(view);
+                        } catch (Exception i) {
+                            Log.e("#!(playsound)", i.toString());
                         }
+
+
                     }
 
                     if (DialogNames[clicks].equals("#!(stopsound)")) {
