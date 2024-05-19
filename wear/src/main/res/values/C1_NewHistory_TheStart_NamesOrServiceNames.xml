@@ -2,17 +2,21 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
    <string-array name="C1_NewHistory_TheStart_NamesOrServiceNames" tools:ignore="TypographyEllipsis">
 
+        <item>#!(playsound)</item>
+        <item>Rick</item>
         <item>ImagerService</item>
-        <item>Легендыч</item>
-        <item>Умненыч</item>
-        <item>MyseDev</item>
-        <item>Легендыч</item>
-        <item>Легендыч</item>
+        <item>None</item>
+        <item>Astley</item>
+        <item>Astley</item>
+        <item>#!(btn_executor)</item>
+        <item>Rick</item>
+        <item>Astley</item>
+        <item>Astley</item>
+        <item>Rick</item>
+        <item>Rick</item>
+        <item>Astley</item>
+        <item>Rick</item>
         <item>#!(rounded_video)</item>
-        <item>#!(rounded_video)</item>
-        <item>#!(rounded_video)</item>
-		<item>#!(btn_executor)</item>
-
 
    </string-array>
 </resources>

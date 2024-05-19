@@ -2,17 +2,21 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
    <string-array name="C1_NewHistory_TheStart_TypedID" tools:ignore="TypographyEllipsis">
 
+        <item>None</item>
         <item>1</item>
         <item>202</item>
         <item>101</item>
+        <item>0</item>
+        <item>0</item>
+        <item>2</item>
+        <item>1</item>
+        <item>0</item>
+        <item>0</item>
         <item>1</item>
         <item>1</item>
+        <item>0</item>
         <item>1</item>
-        <item>1</item>
-        <item>202</item>
-        <item>1</item>
-        <item>1</item>
-        <item>None</item>
+        <item>1002</item>
 
    </string-array>
 </resources>

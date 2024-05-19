@@ -2,16 +2,21 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
    <string-array name="C1_NewHistory_TheStart_ImagesOrAvatars" tools:ignore="TypographyEllipsis">
 
-        <item>legend</item>
-        <item>legend</item>
-        <item>genius</item>
-        <item>just_myse_dev</item>
-        <item>legend</item>
-        <item>legend</item>
         <item>None</item>
+        <item>rick_1</item>
+        <item>first</item>
         <item>None</item>
+        <item>rick_0</item>
+        <item>rick_0</item>
+        <item>I just wanna tell you how I\'m feeling | Never gonna give you up</item>
+        <item>rick_0</item>
+        <item>rick_1</item>
+        <item>rick_1</item>
+        <item>rick_0</item>
+        <item>rick_0</item>
+        <item>rick_1</item>
+        <item>rick_0</item>
         <item>None</item>
-		<item>1|2</item>
 
    </string-array>
 </resources>

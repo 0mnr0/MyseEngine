@@ -2,16 +2,22 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
    <string-array name="C1_NewHistory_TheStart_DialogsOrTexts" tools:ignore="TypographyEllipsis">
 
+        <item>nggup</item>
+        <item>We\'re no strangers to love</item>
         <item>None</item>
-        <item>Its this one thing that got me trippin</item>
-        <item>Guess Im all in, my heart be skippin ahead</item>
-        <item>Got somethin thats one in a million</item>
-        <item>I just cant stop trippin, no-oh, oh-oh, oh</item>
-        <item>It\'s this one thing that got me trippin</item>
-        <item>v8</item>
-        <item>naggets</item>
-        <item>mewing</item>
-		<item>None</item>
+        <item>You know the rules and so do I (Do I)</item>
+        <item>A full commitment\'s what I\'m thinking of</item>
+        <item>You wouldn\'t get this from any other guy</item>
+        <item>choice_right|choice_false</item>
+        <item>Gotta make you understand</item>
+        <item>Never gonna give you up</item>
+        <item>Never gonna let you down</item>
+        <item>Never gonna run around and desert you</item>
+        <item>Never gonna make you cry</item>
+        <item>Never gonna say goodbye</item>
+        <item>Never gonna tell a lie and hurt you</item>
+        <item>round_preview</item>
+
 
    </string-array>
 </resources>

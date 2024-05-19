@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+     <string-array name="C1_choice_right_DialogsOrTexts" tools:ignore="TypographyEllipsis">
+
+          <item>You Messed Up!</item>
+          <item>That\`s right!</item>
+          <item>NewHistory_TheStart</item>
+
+     </string-array>
+
+     <string-array name="C1_choice_right_NamesOrServiceNames" tools:ignore="TypographyEllipsis">
+
+          <item>Rick</item>
+          <item>Rick</item>
+          <item>#!(goto_xml)</item>
+
+     </string-array>
+
+     <string-array name="C1_choice_right_ImagesOrAvatars" tools:ignore="TypographyEllipsis">
+
+          <item>rick_1</item>
+          <item>rick_1</item>
+          <item>None</item>
+
+     </string-array>
+
+
+
+     <string-array name="C1_choice_right_TypedID" tools:ignore="TypographyEllipsis">
+
+          <item>1</item>
+          <item>1</item>
+          <item>7</item>
+
+     </string-array>
+
+</resources>

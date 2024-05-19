@@ -2,17 +2,21 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
    <string-array name="C1_NewHistory_TheStart_DialogsOrTexts" tools:ignore="TypographyEllipsis">
 
-        <item>Смотри..</item>
+        <item>nggup</item>
+        <item>We\'re no strangers to love</item>
         <item>None</item>
-        <item>Андрей протягивает фотографию Тёме</item>
-        <item>Красивый правда?</item>
-        <item>Безуперчный баланс. Эталон гармонии</item>
-        <item>Чуть перевеса туда, или сюда..</item>
-        <item>Ну-ка, попробуй</item>
-        <item>None</item>
-        <item>Вот</item>
-        <item>None</item>
-        <item>Append</item>
+        <item>You know the rules and so do I (Do I)</item>
+        <item>A full commitment\'s what I\'m thinking of</item>
+        <item>You wouldn\'t get this from any other guy</item>
+        <item>choice_right|choice_false</item>
+        <item>Gotta make you understand</item>
+        <item>Never gonna give you up</item>
+        <item>Never gonna let you down</item>
+        <item>Never gonna run around and desert you</item>
+        <item>Never gonna make you cry</item>
+        <item>Never gonna say goodbye</item>
+        <item>Never gonna tell a lie and hurt you</item>
+        <item>round_preview</item>
 
 
    </string-array>

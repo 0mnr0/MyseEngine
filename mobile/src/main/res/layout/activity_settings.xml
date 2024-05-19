@@ -88,7 +88,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/guideline25"
                 app:layout_constraintTop_toTopOf="@+id/switch3"
-                app:srcCompat="@drawable/ic_launcher_foreground" />
+                app:srcCompat="@drawable/rick_0" />
 
             <Switch
                 android:id="@+id/switch3"
@@ -117,7 +117,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/switch4"
-                app:srcCompat="@drawable/just_myse_dev" />
+                app:srcCompat="@drawable/rick_1" />
 
             <Switch
                 android:id="@+id/switch4"
@@ -147,7 +147,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/guideline25"
                 app:layout_constraintTop_toTopOf="@+id/switch5"
-                app:srcCompat="@drawable/legend" />
+                app:srcCompat="@drawable/rock" />
 
             <Switch
                 android:id="@+id/switch5"
@@ -176,7 +176,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/switch6"
-                app:srcCompat="@drawable/achievement_unlocked" />
+                app:srcCompat="@drawable/legend" />
 
             <Switch
                 android:id="@+id/switch6"
