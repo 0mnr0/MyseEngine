@@ -643,7 +643,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
         hideSystemUI();
 
         mediaPlayer = new MediaPlayer();
@@ -712,6 +711,10 @@ public class MainActivity extends AppCompatActivity {
             AutoPlay.setImageResource(R.drawable.pause);
             AutoPlaying=false;
         }
+        if (LoadMuting()){
+            mediaPlayer.setVolume(0F, 0F);
+        }
+        SoundMuted = LoadMuting();
 
 
 
