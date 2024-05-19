@@ -238,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("DiscouragedApi")
     public void starter_con(View view) {
 
-        if (clicks == -2) {clicks++;}
+        if (clicks < -1) {clicks = -1;}
         Log.d("clicksCounter", String.valueOf(clicks));
 
         try {
@@ -251,6 +251,7 @@ public class MainActivity extends AppCompatActivity {
                     if (DialogNames[clicks].equals("#!(clear_screen);")) {
                         cleaning();
                         cmdwas = true;
+                        starter_con(view);
                     }
 
                     if (DialogNames[clicks].equals("#!(btn_executor)")) {
@@ -355,7 +356,8 @@ public class MainActivity extends AppCompatActivity {
                                 mediaPlayer.start();
 
 
-                            } catch (Exception ignored) {
+                            } catch (Exception i) {
+                                Log.e("#!(playsound)", i.toString());
                             }
 
                         }
@@ -407,13 +409,14 @@ public class MainActivity extends AppCompatActivity {
 
                 } else {
                     cleaning();
-                    clicks = -1;
+                    clicks = 0;
                 }
                 SaveInt("SavedClicks", clicks - 1);
                 //PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("AdditionalName", //).apply();
 
             }
         }catch (Exception e){
+            if (clicks<0){clicks=0; Log.e("Iventor09142", "Error by invalid clicks value");}
             Log.e("Iventor09142", e+"\nText:"+DialogTexts[clicks]+"\nNames:"+DialogNames[clicks]+"\nImage:"+DialogImages[clicks]+"\nID:"+DialogIDS[clicks]);
         }
     }
