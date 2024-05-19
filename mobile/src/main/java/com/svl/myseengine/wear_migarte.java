@@ -74,7 +74,6 @@ public class wear_migarte extends AppCompatActivity {
         ProgressBar pb = findViewById(R.id.progressBar2);
         pb.setVisibility(View.VISIBLE);
         int SavedClicks = LoadInt();
-        Log.d("LoadedAdditionalName", LoadStr());
         SendData("push_save_file", SavedClicks+","+LoadStr());
         pb.setVisibility(View.INVISIBLE);
     }
@@ -116,9 +115,6 @@ public class wear_migarte extends AppCompatActivity {
                     }
 
 
-
-                        Toast.makeText(wear_migarte.this, message,
-                            Toast.LENGTH_LONG).show();
 
                 }
             }
